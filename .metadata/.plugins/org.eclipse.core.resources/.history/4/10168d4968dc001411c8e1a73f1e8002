@@ -1,0 +1,21 @@
+\relax 
+\catcode `"\active 
+\select@language{polish}
+\@writefile{toc}{\select@language{polish}}
+\@writefile{lof}{\select@language{polish}}
+\@writefile{lot}{\select@language{polish}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Cel \IeC {\'c}wiczenia}{1}}
+\newlabel{equ:trankup1}{{1}{1}}
+\newlabel{equ:trankup2}{{2}{1}}
+\newlabel{equ:transtrejc}{{3}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Model Kupfmuellera I rz\IeC {\k e}du z op\IeC {\'o}\IeC {\'z}nieniem}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Odpowied\IeC {\'z} skokowa modelu na tle pomiar\IeC {\'o}w dla parametr\IeC {\'o}w modelu: $k=2[-]$, $T=13[s]$, $\theta =8[s]$. $\varepsilon =0.0046$}}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Odpowied\IeC {\'z} skokowa modelu na tle pomiar\IeC {\'o}w dla optymalnych parametr\IeC {\'o}w modelu. $\varepsilon =0.0015$}}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Model Kupfmuellera II rz\IeC {\k e}du z op\IeC {\'o}\IeC {\'z}nieniem}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Odpowied\IeC {\'z} skokowa modelu na tle pomiar\IeC {\'o}w dla parametr\IeC {\'o}w modelu: $k=2[-]$, $T_1=6[s]$, $T_2=8[s]$, $\theta =5[s]$. $\varepsilon =0.0071$}}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Odpowied\IeC {\'z} skokowa modelu na tle pomiar\IeC {\'o}w dla optymalnych parametr\IeC {\'o}w modelu. $\varepsilon =0.0013$}}{5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Model Strejca}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Odpowied\IeC {\'z} skokowa modelu na tle pomiar\IeC {\'o}w dla parametr\IeC {\'o}w modelu: $k=2[-]$, $T=7[s]$, $n=3[-]$. $\varepsilon =0.0041$}}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Odpowied\IeC {\'z} skokowa modelu na tle pomiar\IeC {\'o}w dla optymalnych parametr\IeC {\'o}w modelu i rz\IeC {\k e}du aproksymacji $n=3[-]$. $\varepsilon =0.0027$}}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Wnioski i spostrze\IeC {\.z}enia}{8}}

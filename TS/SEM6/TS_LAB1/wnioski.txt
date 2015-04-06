@@ -1,0 +1,24 @@
+Na podstawie portretów fazowych systemów dynamicznych jesteœmy w stanie,
+wyci¹gn¹æ szereg informacji na temat owego systemu. S¹ to m.in:
+
+[1]:    Stabilnoœæ systemu - dla systemów liniowych asymptotyczna stabilnoœæ
+        jest równowa¿ne ze zbieganiem wszystkich trajektorii startuj¹cych
+        z dowolnego punktu pocz¹tkowego, do punktu znajduj¹cego siê w pocz¹tku
+        uk³adu wspó³rzêdnych p³aszczyzny stanu, stabilnoœæ jest równowa¿na z tym,
+        i¿ nie istnieje trajektoria, której przebieg przyjmowa³by punkty
+        o wspó³rzêdnych nieograniczonych, ostatecznie system niestabilny posiada
+        co najmniej jedn¹ trajektoriê której wspó³rzêdne s¹ nieograniczone.
+
+[2]:    Charakter systemu - znaj¹c typowe postaci macierzy stanu opisuj¹cych
+        liniowy system dynamiczny oraz odpowiadaj¹ce im portrety fazowe, jesteœmy
+        w stanie oszacowaæ klasê badanego uk³adu na podstawie samego portretu
+        fazowego, bez znajomoœci jego modelu, co w przypadku uk³adów liniowych
+        sprowadza siê do oszacowania typu wartoœci i wektorów w³asnych macierzy stanu.
+
+[3]:    Drgania - na podstawie posiadanego portretu fazowego jesteœmy w stanie
+        wywnioskowaæ, czy mo¿liwe jest powstawanie drgañ w badanym systemie.
+
+Nale¿y jednak pamiêtaæ, ¿e portrety fazowe, szczególnie w przypadku systemów
+nieliniowych, nie oddaj¹ ca³oœci charakteru badanego uk³adu, wiêc wnioski wyci¹gniête
+na ich podstawie mog¹ wskazywaæ jedynie kierunek dog³êbniejszych rozwa¿añ, nie zaœ
+pewnik.

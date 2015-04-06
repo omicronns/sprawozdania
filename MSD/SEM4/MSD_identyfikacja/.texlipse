@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Mon Apr 06 16:20:45 CEST 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=main.tex
+outputFile=MSD_identyfikacja_texout.pdf
+langSpell=pl
+markDer=true
+srcDir=src/

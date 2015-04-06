@@ -1,0 +1,125 @@
+\pgfmathsetmacro{\bloczekr}{50}
+
+\def\bloczek at (#1,#2){
+	\draw 	(#1,#2) circle (\bloczekr/3 pt)
+			(#1,#2) circle (\bloczekr pt)
+}
+
+\def\masa at (#1,#2){
+	\draw 	(#1-2.5*\bloczekr pt,#2-1.5*\bloczekr pt)
+			rectangle +(5*\bloczekr pt,3*\bloczekr pt)
+}
+
+\def\sprezyna at (#1,#2){
+	\draw	(#1,#2) --
+			++(180:50pt)--
+			++(120:50pt) --
+			++(-120:100pt)--
+			++(120:100pt) --
+			++(-120:100pt)--
+			++(120:100pt) --
+			++(-120:100pt) --
+			++(120:50pt) --
+			++(180:50pt);
+}
+
+\def\gndhr at (#1,#2){
+	\draw	(#1,#2)
+			++(0,-2.5*\bloczekr pt) --
+			++(0,5*\bloczekr pt);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(0,-2.5*\bloczekr pt+\y*\bloczekr pt) --
+				+(135:50pt);
+	}
+}
+
+\def\gndhl at (#1,#2){
+	\draw	(#1,#2)
+			++(0,-2.5*\bloczekr pt) --
+			++(0,5*\bloczekr pt);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(0,-2.5*\bloczekr pt+\y*\bloczekr pt) --
+				+(45:50pt);
+	}
+}
+
+\def\gndvd at (#1,#2){
+	\draw	(#1,#2)
+			++(-2.5*\bloczekr pt,0) --
+			++(5*\bloczekr pt,0);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(-2.5*\bloczekr pt+\y*\bloczekr pt,0) --
+				+(45:50pt);
+	}
+}
+
+\def\gndvu at (#1,#2){
+	\draw	(#1,#2)
+			++(-2.5*\bloczekr pt,0) --
+			++(5*\bloczekr pt,0);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(-2.5*\bloczekr pt+\y*\bloczekr pt,0) --
+				+(-45:50pt);
+	}
+}
+
+\begin{tikzpicture}[scale=0.12]
+
+\draw[very thick,-latex]
+	(-1800pt,0) -- node[below]{$$}
+	(-800pt,0);
+
+\masa at (0,0); %m1
+\draw	(0,0)
+		++(0,130pt) node{$m_1$};
+\coordinate (mz) at (-2.5*\bloczekr pt, 0);
+
+\draw	(mz) -- node[below]{$x$}
+		(-10*\bloczekr pt,0) -- node[left]{$h$}
+		(-10*\bloczekr pt, 10*\bloczekr pt);
+\draw	(-10*\bloczekr pt,0)
+		++(0,10*\bloczekr*1.17 pt)
+		++(0,-300pt)
+		arc (-90:-57:300pt)
+		+(-100pt,50pt) node{$\theta$};
+
+\bloczek at (-10*\bloczekr pt, 10*\bloczekr pt); %b1
+\draw 	(mz) -- 
+		($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+		({atan(0.75)}:\bloczekr pt)$);
+\draw	($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+		(90:\bloczekr pt)$) --
+		(-16*\bloczekr pt, 11*\bloczekr pt);
+\sprezyna at (-16*\bloczekr pt, 11*\bloczekr pt); %k1
+\draw	(-16*\bloczekr pt, 11*\bloczekr pt)
+		++(-200pt,-120pt) node{$k_1$};
+\draw 	($(-16*\bloczekr pt, 11*\bloczekr pt) +
+		(-400pt,0)$) --
+		($(-30*\bloczekr pt, 12*\bloczekr pt) +
+		(-90:\bloczekr pt)$);
+\gndhr at (-16*\bloczekr pt - 700pt, 11*\bloczekr pt);
+
+\begin{scope}[yscale=-1]
+	\bloczek at (-10*\bloczekr pt, 10*\bloczekr pt); %b1
+	\draw 	(mz) -- 
+			($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+			({atan(0.75)}:\bloczekr pt)$);
+	\draw	($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+			(90:\bloczekr pt)$) --
+			(-16*\bloczekr pt, 11*\bloczekr pt);
+	\sprezyna at (-16*\bloczekr pt, 11*\bloczekr pt); %k1
+	\draw	(-16*\bloczekr pt, 11*\bloczekr pt)
+			++(-200pt,-120pt) node{$k_1$};
+	\draw 	($(-16*\bloczekr pt, 11*\bloczekr pt) +
+			(-400pt,0)$) --
+			($(-30*\bloczekr pt, 12*\bloczekr pt) +
+			(-90:\bloczekr pt)$);
+	\gndhr at (-16*\bloczekr pt - 700pt, 11*\bloczekr pt);
+\end{scope}
+
+
+\end{tikzpicture}

@@ -1,0 +1,11 @@
+CONTENT_ASSIST_BACKGROUND_COLOR=255,195,73
+ColorsAndFontsPreferencePage.expandedCategories=Torg.eclipse.ui.workbenchMisc\tTorg.eclipse.cdt.ui.presentation
+ColorsAndFontsPreferencePage.selectedElement=Forg.eclipse.cdt.ui.buildconsole.ConsoleFont
+ENABLED_DECORATORS=com.sigasi.hdt.shared.ui.LibraryDecorator\:true,com.sigasi.hdt.toolchains.labs.altera.quartus.nature.overlay\:true,com.sigasi.hdt.verilog.ui.verilogNature.overlay\:true,com.sigasi.hdt.vhdl.ui.vhdlNature.overlay\:true,com.sigasi.hdt.vhdl.ui.ProblemDecorator\:true,org.eclipse.cdt.ui.indexedFiles\:false,org.eclipse.cdt.managedbuilder.ui.excludedFile\:true,org.eclipse.cdt.managedbuilder.ui.includeFolder\:true,org.eclipse.cdt.internal.ui.CustomBuildSettingsDecorator\:true,org.eclipse.egit.ui.internal.decorators.GitLightweightDecorator\:true,org.eclipse.jdt.ui.override.decorator\:true,org.eclipse.jdt.ui.interface.decorator\:false,org.eclipse.jdt.ui.buildpath.decorator\:true,org.eclipse.ui.LinkedResourceDecorator\:true,org.eclipse.ui.SymlinkDecorator\:true,org.eclipse.ui.VirtualResourceDecorator\:true,org.eclipse.ui.ContentTypeDecorator\:true,org.eclipse.ui.ResourceFilterDecorator\:false,org.eclipse.xtext.builder.nature.overlay\:true,
+UIActivities.org.eclipse.cdt.debug.dsfgdbActivity=true
+eclipse.preferences.version=1
+org.eclipse.jface.textfont=1|Monospace|9.0|0|GTK|1|;
+org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\n<org.eclipse.ui.commands>\n<keyBinding commandId\="org.eclipse.cdt.ui.refactor.implement.method" contextId\="org.eclipse.ui.contexts.window" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+CR"/>\n</org.eclipse.ui.commands>
+org.eclipse.ui.workbench.ACTIVE_TAB_BG_END=0,40,69
+org.eclipse.ui.workbench.ACTIVE_TAB_BG_START=0,57,98
+overridepresentation=true

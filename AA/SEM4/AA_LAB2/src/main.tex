@@ -1,0 +1,252 @@
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage{polski}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{tikz} 
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{multirow}
+\usepackage{tabularx}
+%\usepackage[colorlinks=true]{hyperref}
+%\usepackage[all]{hypcap}
+%\usepackage{showframe} 
+\usepackage{geometry}
+ \geometry{
+ a4paper, 
+ left=20mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+ }
+ 
+\renewcommand{\dateseparator}{.}
+\newdate{exercise_date}{29}{04}{2014}
+\newdate{create_date}{06}{05}{2014}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% TIKZ PACKAGES
+%----------------------------------------------------------------------------------------
+ 
+\usetikzlibrary{arrows, decorations.markings, decorations.pathmorphing, calc,
+positioning, intersections, shapes, decorations.pathreplacing}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\input{spr_titlepage.tex}
+
+\section{Wstęp}
+
+\subsection{Cel ćwiczenia}
+
+Zapoznanie się z budową i programowaniem prostego jednokanałowego regulatora cyfrowego, 
+stosowanego do regulacji temperatury lub innych wielkości przetworzonych na sygnał 
+standardowy w niewielkich instalacjach (np. w zakładach rzemieślniczych). Zapoznanie się z 
+przykładem jednoobwodowego układu regulacji temperatury.
+
+\subsection{Opis stanowiska} 
+
+Stanowisko składa się z dwóch części połączonych przewodem wielożyłowym z
+wtyczkami:
+
+\begin{itemize}
+	\item Skrzynka z regulatorem. Zawiera regulator \textsc{LUMEL RE31} wraz z
+  	połączeniami elektrycznymi oraz włącznik sieciowy. Zastosowano regulator z
+  	wyjściem przekaźnikowym dwupołożeniowym $230[V]$ $3[A]$.
+  	\item Obiekt regulacji typu cieplnego. Jest nim walec aluminiowy zamocowany we wkładzie 
+	grzejnym do lutownicy o mocy $400[W]$. Spirala grzejna jest zasilana impulsowo
+	z wyjścia regulatora sygnałem sieciowym $230[V]$. Współczynnik wypełnienia
+	sygnału sterującego jest modulowany poziomem sygnału wyjściowego regulatora.
+	Na obu końcach walca są symetrycznie zamocowane dwa termometry \textsc{Pt100}.
+	Jeden z nich jest połączony z wejściem regulatora, a drugi z gniazdami na
+	przedniej ścianie obudowy. Oba termometry są łączone w systemie
+	trójprzewodowym. Wystające z wkładu końce walca są karbowane w celu
+	zwiększenia intensywności chłodzenia.
+	Obiekt umieszczony jest w metalowej obudowie. W prawej ścianie obudowy jest
+	wbudowany wentylator uruchamiany z wyjścia alarmowego \textsc{AL1} regulatora
+	stosowany w celu dodatkowego chłodzenia obiektu.
+\end{itemize}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\input{schemat_stanowiska.tex}
+	\end{center}
+	\caption{Schemat stanowiska}
+\end{figure}
+
+\newpage
+
+\subsection{Opis regulatora LUMEL RE31}
+
+Regulator \textsc{LUMEL RE31} jest regulatorem cyfrowym, który umożliwia
+implementację regulacji dwupołożeniowej, oraz PID z wyjściem PWM dla
+wolnozmiennych procesów regulowanych. Menu programowania sterownika, podzielone
+jest na 3 poziomy bezpieczeństwa, w zależności od częstości zmian danych
+funkcji oraz konsekwencji, które mogą wyniknąć z ich przypadkowej zmiany.
+Menu jest obsługiwane trzema przyciskami: góra, dół, akceptacja. Przyciskiem
+akceptacji eksplorujemy menu, chcąc przejść do wyższego poziomu musimy dojść do
+ostatniej opcji aktualnego poziomu i przytrzymać przycisk akceptacji przez
+$3.2[s]$. Zagapienie się i ominięcie ostatniej opcji poziomu powoduje powrót do
+najniższej opcji najniższego poziomu.
+
+\subsection{Regulacja PWM}
+
+Fundamentem regulacji sygnałem PWM jest idea kontroli przepływu energii
+dostarczanej do obiektu małymi porcjami, z mocą maksymalną lub minimalną, dzięki
+czemu sterowanie jej przepływem jest prostsze i odbywa się z mniejszymi
+stratami. Przy regulacji PWM sygnałem regulującym jest sygnał prostokątny o
+stałej amplitudzie i częstotliwości, o zmiennym współczynniku wypełnienia.
+
+\begin{figure}[!htb]
+	\begin{center}
+		\begin{tikzpicture}[scale=2]
+			\draw
+				(0,0)	node[left]{$0$};
+			\draw
+				(0,2)	node[left]{$U_{max}$}; 
+			
+			\draw[-latex,ultra thick]
+				(0,0)	--
+				(5,0)	node[below]{$t[s]$};
+			\draw[-latex,ultra thick]
+				(0,0)	--
+				(0,3)	node[left]{$u(t)[-]$};
+			\draw
+				(0,2)		--
+				++(1.5,0)	--
+				++(0,-2)
+				++(0.5,0)	--
+				++(0,2)		--
+				++(1,0)		--
+				++(0,-2)
+				++(1,0)		--
+				++(0,2)		--
+				++(0.5,0);
+				
+			\draw[decorate,decoration={brace,mirror,amplitude=7pt}]
+				(0,0)	-- node[below,yshift=-18]{$t_{w1}$}
+				++(1.5,0);
+			\draw[decorate,decoration={brace,mirror,amplitude=7pt}]
+				(1.5,0)	-- node[below,yshift=-18]{$t_{n1}$}
+				++(0.5,0);
+			\draw[decorate,decoration={brace,mirror,amplitude=7pt}]
+				(2,0)	-- node[below,yshift=-18]{$t_{w2}$}
+				++(1,0);
+			\draw[decorate,decoration={brace,mirror,amplitude=7pt}]
+				(3,0)	-- node[below,yshift=-18]{$t_{n2}$}
+				++(1,0);
+				
+		\end{tikzpicture}
+	\end{center}
+	\caption{Regulacja PWM}
+\end{figure}
+
+Średnia wartość sygnału dostarczana do obiektu jest równa
+$U_{\text{śr}}=U_{max}\dfrac{t_w}{t_w+t_n}[-]$.
+
+\newpage
+
+\section{Przebieg ćwiczenia}
+
+Przed rozpoczęciem ćwiczenia należało ustawić pewne parametry regulatora
+charakterystyczne dla badanej konfiguracji układu regulacji:
+
+\begin{table}[!htb]
+	\begin{center}
+		\begin{tabular}{|c|c|}
+			\hline
+			Typ wejścia	&	\textsc{Pt100 JS}	\\
+			\hline
+			Dolna granica zakresu 	&	$10^{\circ}C$	\\
+			\hline
+			Górna granica zakresu 	&	$300^{\circ}C$	\\
+			\hline
+			Dolne ograniczenie mocy wyjściowej 	&	$0\%$	\\
+			\hline
+			Górne ograniczenie mocy wyjściowej 	&	$100\%$	\\
+			\hline
+			Wartości zadane	&	$100^{\circ}C$, $200^{\circ}C$	\\
+			\hline
+			Alarm AL1 względny	&	$+2^{\circ}C$, $+10^{\circ}C$, $+50^{\circ}C$	\\
+			\hline
+			Alarm AL1 bezwzględny	&	Zadana + $2^{\circ}C$, $10^{\circ}C$,
+			$50^{\circ}C$	\\
+			\hline
+			Rodaj regulacji	&	Inwersyjne	\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\label{tab:params}
+	\caption{Parametry regulatora}
+\end{table}
+
+Pierwszą częścią naszego ćwiczenia było zbadanie działania regulatora, jako regulatora 
+dwustawnego dla różnych wartości histerezy. Aby uruchomić powyższy tryb należało 
+ustawić wartość zakresu proporcjonalności $P_b$ na 0, oraz ustawić
+porządaną wartość histerezy.
+
+Drugą część ćwiczenia stanowiło 
+sprawdzenie pracy regulatora w trybie PID, przy poniższych nastawach regulatora:
+
+\begin{table}[!htb]
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wartość zadana	&	$100^{\circ}C$	&	$200^{\circ}C$ \\
+			\hline
+			$P_b$	&	40	&	16 \\
+			\hline
+			$T_i$	&	166	&	103 \\
+			\hline
+			$T_d$	&	209	&	51 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\label{tab:nast}
+	\caption{Nastawy regulatora PID}
+\end{table}
+
+\section{Wnioski i spostrzeżenia}
+
+Sterowanym obiektem jest masywna bryła metalowa, jest to obiekt wysokiego rzędu
+posiadający dużą bezwładność cieplną, co skutecznie utrudnia jego sterowanie.
+
+Sterownik \textsc{LUMEL RE31} posiada wyjątkowo niewdzięczny interfejs
+użytkownika, zapewne jest dedykowany do obsługi procesów, które nie wymagają
+częstej zmiany nastaw regulatora.
+
+W przypadku pracy regulatora w trybie dwupołożeniowym dało się zaobserwować duże
+przeregulowania wartości sterowanej, dla wartości zadanej $100^{\circ}C$ i
+histerezy jedynie $2^{\circ}C$ temperatura obiektu sięgała w szczycie nawet
+$110^{\circ}C$. Dla wartości zadanej $200^{\circ}C$
+przeregulowania względne pozostawały na w przybliżeniu takim samym poziomie.
+Dla niektórych zastosowań takie przebiegi wielkości regulowanej są niedopuszczalne.
+
+W przypadku pracy w trybie PID PWM, regulator działał znacznie sprawniej.
+Dla wartości zadanej $100^{\circ}C$ pierwsze przeregulowanie na
+poziomie $5^{\circ}C$, następnie po ustabilizowaniu wartość regulowana
+oscylowała wokół wartości zadanej w zakresie mniejszym niż $\pm 1^{\circ}C$
+
+Podsumowując, regulacja dwustawna jest bardzo prostym algorytmem regulacyjnym,
+jednak w zastosowaniach gdzie niemile widziane są duże oscylacje wartości
+regulowanej jest bezużyteczna. Pracę tego regulatora zaburzają opóźnienia
+odpowiedzi obiektu, ponieważ wartość regulowana rośnie nawet pomimo już
+wyłączonego wymuszenia, co powoduje znaczne oscylacje odpowiedzi obiektu.
+Regulacja ciągła PID zapewnia dużo lepsze parametry regulacyjne.
+
+
+\end{document}
+
+

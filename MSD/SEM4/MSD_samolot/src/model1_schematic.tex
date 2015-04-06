@@ -1,0 +1,94 @@
+\pgfmathsetmacro{\bloczekr}{50}
+
+\def\bloczek at (#1,#2){
+	\draw 	(#1,#2) circle (\bloczekr/3 pt)
+			(#1,#2) circle (\bloczekr pt)
+}
+
+\def\masa at (#1,#2){
+	\draw 	(#1-2.5*\bloczekr pt,#2-1.5*\bloczekr pt)
+			rectangle +(5*\bloczekr pt,3*\bloczekr pt)
+}
+
+\def\sprezyna at (#1,#2){
+	\draw	(#1,#2) --
+			++(180:50pt)--
+			++(120:50pt) --
+			++(-120:100pt)--
+			++(120:100pt) --
+			++(-120:100pt)--
+			++(120:100pt) --
+			++(-120:100pt) --
+			++(120:50pt) --
+			++(180:50pt);
+}
+
+\def\gndhr at (#1,#2){
+	\draw	(#1,#2)
+			++(0,-2.5*\bloczekr pt) --
+			++(0,5*\bloczekr pt);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(0,-2.5*\bloczekr pt+\y*\bloczekr pt) --
+				+(135:50pt);
+	}
+}
+
+\def\gndhl at (#1,#2){
+	\draw	(#1,#2)
+			++(0,-2.5*\bloczekr pt) --
+			++(0,5*\bloczekr pt);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(0,-2.5*\bloczekr pt+\y*\bloczekr pt) --
+				+(45:50pt);
+	}
+}
+
+\def\gndvd at (#1,#2){
+	\draw	(#1,#2)
+			++(-2.5*\bloczekr pt,0) --
+			++(5*\bloczekr pt,0);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(-2.5*\bloczekr pt+\y*\bloczekr pt,0) --
+				+(45:50pt);
+	}
+}
+
+\def\gndvu at (#1,#2){
+	\draw	(#1,#2)
+			++(-2.5*\bloczekr pt,0) --
+			++(5*\bloczekr pt,0);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(-2.5*\bloczekr pt+\y*\bloczekr pt,0) --
+				+(-45:50pt);
+	}
+}
+
+\begin{tikzpicture}[scale=0.15]
+
+\draw[very thick,-latex]
+	(-1300pt,300pt) -- node[below]{$$}
+	(-800pt,300pt);
+
+\masa at (0,0); %m1
+\draw	(0,0)
+		++(0,130pt) node{$m_1$};
+\coordinate (mz) at (-2.5*\bloczekr pt, 0);
+
+\draw 	(mz) --
+		++(-300pt,0);
+\sprezyna at (-2.5*\bloczekr pt - 300pt, 0);
+
+\draw	(-2.5*\bloczekr pt - 300pt, 0)
+		++(-200pt,-120pt) node{$k_1$};
+
+\draw 	(-2.5*\bloczekr pt - 700pt, 0) --
+		(-2.5*\bloczekr pt - 1000pt, 0);
+
+\gndhr at (-2.5*\bloczekr pt - 1000pt, 0);
+
+
+\end{tikzpicture}

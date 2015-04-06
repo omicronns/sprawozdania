@@ -1,0 +1,48 @@
+\relax 
+\catcode `"\active 
+\select@language{polish}
+\@writefile{toc}{\select@language{polish}}
+\@writefile{lof}{\select@language{polish}}
+\@writefile{lot}{\select@language{polish}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Cel \IeC {\'c}wiczenia}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schemat badanego uk\IeC {\l }adu}}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Stabilno\IeC {\'s}\IeC {\'c}}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Kryterium Hurwitza}{2}}
+\newlabel{mat:hurwitz}{{3}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Kryterium Nyquista}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Odpowiedzi skokowe i kryteria stabilno\IeC {\'s}ci}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Uk\IeC {\l }ad wyj\IeC {\'s}ciowy}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Kryterium Hurwitza}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Kryterium Nyquista}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla wyj\IeC {\'s}ciowych parametr\IeC {\'o}w regulatora}}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Odpowied\IeC {\'z} skokowa}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla wyj\IeC {\'s}ciowych parametr\IeC {\'o}w regulatora}}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Parametr k}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Kryterium Hurwitza}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Kryterium Nyquista}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla $k=k_g$}}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla $k=k_s$}}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Odpowiedzi skokowe}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla $k=k_g$}}{9}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla $k=k_s$}}{9}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Parametr $T_i$}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Kryterium Hurwitza}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Kryterium Nyquista}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla $T_{i}=T_{ig}$}}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla $T_{i}=T_{is}$}}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Odpowiedzi skokowe}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla $T_{i}=T_{ig}$}}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla $T_{i}=T_{is}$}}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Parametr $T_d$}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Kryterium Hurwitza}{13}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Kryterium Nyquista}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla $T_{d}=T_{dg}$}}{13}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Charakterystyka Nyquista uk\IeC {\l }adu otwartego dla $T_{d}=T_{ds}$}}{14}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Odpowiedzi skokowe}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla $T_{d}=T_{dg}$}}{15}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla $T_{d}=T_{ds}$}}{15}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Eksperyment Zieglera\IeC {\textendash }Nicholsa}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla wzmocnienia krytycznego $k_{kr}=0.3[-]$}}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Odpowied\IeC {\'z} skokowa uk\IeC {\l }adu zamkni\IeC {\k e}tego dla nastaw dobranych metod\IeC {\k a} Z-N}}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Wnioski i spostrze\IeC {\.z}enia}{17}}

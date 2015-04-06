@@ -1,0 +1,31 @@
+\relax 
+\catcode `"\active 
+\select@language{polish}
+\@writefile{toc}{\select@language{polish}}
+\@writefile{lof}{\select@language{polish}}
+\@writefile{lot}{\select@language{polish}}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Program \IeC {\'c}wiczenia}{1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Przebieg \IeC {\'c}wiczenia}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}BWH + MVD2555}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}ADXL320EB + DasyLab}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Schemat toru pomiarowego w \IeC {\'s}rodowisku DasyLab}}{2}}
+\newlabel{rys:dasy_sch}{{1}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Rejestracja sygna\IeC {\l }\IeC {\'o}w drga\IeC {\'n} silnika oraz wyznaczenie i analiza widma sygna\IeC {\l }\IeC {\'o}w w \IeC {\'s}rodowisku DasyLab}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Przebieg drga\IeC {\'n} mierzonych na wale silnika}}{4}}
+\newlabel{rys:pwal}{{2}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Przebieg drga\IeC {\'n} mierzonych na obudowie silnika}}{4}}
+\newlabel{rys:pobu}{{3}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces FFT przy\IeC {\'s}piesze\IeC {\'n} na wale w osi X}}{5}}
+\newlabel{rys:fwalx}{{4}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces FFT przy\IeC {\'s}piesze\IeC {\'n} na obudowie w osi X}}{5}}
+\newlabel{rys:fobx}{{5}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces FFT przy\IeC {\'s}piesze\IeC {\'n} na wale w osi Y}}{6}}
+\newlabel{rys:fwaly}{{6}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces FFT przy\IeC {\'s}piesze\IeC {\'n} na obudowie w osi Y}}{6}}
+\newlabel{rys:foby}{{7}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces FFT przy\IeC {\'s}piesze\IeC {\'n} na wale w osi Z}}{7}}
+\newlabel{rys:fwalz}{{8}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces FFT przy\IeC {\'s}piesze\IeC {\'n} na obudowie w osi Z}}{7}}
+\newlabel{rys:fobz}{{9}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Wnioski}{8}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Wykaz aparatury}{8}}

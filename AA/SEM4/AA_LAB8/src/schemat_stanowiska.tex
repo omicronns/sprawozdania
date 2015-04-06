@@ -1,0 +1,173 @@
+\tikzstyle{vecArrow} = 
+	[	thick,
+		decoration={
+			markings,
+			mark=at position 0+20pt with
+				{\arrowreversed[thin, scale=2]{open triangle 60}},
+			mark=at position 1 with {\arrow[thin, scale=2]{open triangle 60}}
+			},
+		double distance=4pt,
+		shorten >= 10pt,
+		shorten <= 10pt,
+		preaction = {decorate},
+		postaction = {
+		draw,
+		line width=4pt,
+		white,
+		shorten >= 9pt,
+		shorten <= 9pt
+		}
+  ]
+  
+\tikzstyle{vecArrowSS} = 
+	[	thick,
+		decoration={
+			markings,
+			mark=at position 1 with
+				{\arrow[thin, scale=2]{open triangle 60}}
+			},
+		double distance=4pt,
+		shorten >= 10pt,
+		preaction = {decorate},
+		postaction = {
+		draw,
+		line width=4pt,
+		white,
+		shorten >= 9pt,
+		}
+  ]
+  
+\tikzstyle{innerWhite} = 
+	[	semithick,
+		white,
+		line width=4pt,
+		shorten >= 9pt,
+		shorten <= 9pt
+	]
+
+\begin{tikzpicture}[
+            % copy to preamble to use it everywhere \tikzset{node/.style...}
+            node/.style=
+            {
+                % shape
+                rectangle,
+                rounded corners=1mm,
+                minimum size=12mm,
+                %border
+                thick,
+                draw,
+            },
+            busnode/.style=
+            {
+                inner sep=0,
+                minimum size=0mm,
+            },
+            circ/.style=
+            {
+                % shape
+                circle,
+                minimum size=12mm,
+                %border
+                thick,
+                draw,
+            },
+            node distance=10mm
+            ]
+	\node[node]
+				(PC)
+				{$\textsc{PC}$};
+	\node[node,
+				right=30mm of PC]
+				(ADAM5000)
+				{$\textsc{ADAM5000}$};
+ 	\node[busnode,
+ 				below=15mm of ADAM5000]
+ 				(bus60)
+ 				{};
+	\node[node,
+				right=of bus60]
+				(ADAM5060)
+				{$\textsc{ADAM5060}$};
+	\node[circ,
+				right=of ADAM5060]
+				(Lamp)
+				{};
+	\draw[thick]
+				(Lamp.north west) -- (Lamp.south east);
+	\draw[thick]
+				(Lamp.north east) -- (Lamp.south west);
+				
+	\node[busnode,
+				below=20mm of bus60]
+				(bus18)
+				{};
+	\node[node,
+				right=of bus18]
+				(ADAM5018)
+				{$\textsc{ADAM5018}$};
+	\node[circ,
+				right=of ADAM5018]
+				(Fotocop)
+				{};
+	\draw[thick]
+				(Fotocop.south) -- +(0,0.5);
+	\draw[thick]
+				(Fotocop.north) -- +(0,-0.5);
+	\draw[thick]
+				(Fotocop.north) +(-0.4,-0.5)	--
+				+(0.4,-0.5);
+	\draw[ultra thick]
+				(Fotocop.south) +(-0.2,0.5)	--
+				+(0.2,0.5);
+	\draw[-latex, thick]
+				(Fotocop.east)
+				+(0.5,0.3) --
+				+(0.1,0.0);
+	\draw[-latex, thick]
+				(Fotocop.east)
+				+(0.5,0.1) --
+				+(0.1,-0.2);
+				
+	\node[busnode,
+				below=20mm of bus18]
+				(bus13)
+				{};
+	\node[node,
+				right=of bus13]
+				(ADAM5013)
+				{$\textsc{ADAM5013}$};
+	\node[node,
+				right=of ADAM5013]
+				(Pt100)
+				{\text{\hspace{2cm}}};
+	\draw
+				(Pt100.west) +(0.5,0.0) -- +(0.7,0.0);
+	\draw[decorate, decoration={zigzag}]
+				(Pt100.west) +(0.7,0.0) --
+				($(Pt100.east)-(0.72,0.0)$);
+	\draw
+				(Pt100.east) +(-0.52,0.0) -- +(-0.72,0.0);
+	\node[below=1mm of Pt100]
+				(Pt100name)
+				{\textsc{Pt100}};
+
+				
+	\draw[vecArrow]
+				(PC) to node[above]{RS-232} (ADAM5000);
+	\draw[vecArrow]
+				(ADAM5000) |- (ADAM5013);
+	\draw[vecArrowSS]
+				(bus18) to (ADAM5018);
+	\draw[vecArrowSS]
+				(bus60) to (ADAM5060);
+	\draw[innerWhite]
+				(ADAM5000) |- (ADAM5013);
+				
+	\draw[-latex,very thick]
+				(ADAM5060) -- (Lamp);
+	\draw[-latex,very thick]
+				(Fotocop) -- (ADAM5018);
+	\draw[-latex,very thick]
+				(Pt100) -- (ADAM5013);
+	
+\end{tikzpicture}

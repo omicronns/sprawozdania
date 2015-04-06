@@ -1,0 +1,204 @@
+
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article}
+
+\usepackage{polski}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{multirow}
+\usepackage{tabularx}
+%\usepackage[colorlinks=true]{hyperref}
+%\usepackage[all]{hypcap}
+%\usepackage{showframe} 
+\usepackage{geometry}
+ \geometry{
+ a4paper, 
+ left=20mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+ }
+ 
+\renewcommand{\dateseparator}{.}
+\newdate{exercise_date}{01}{04}{2014}
+\newdate{create_date}{08}{04}{2014}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% TIKZ PACKAGES
+%----------------------------------------------------------------------------------------
+ 
+\usetikzlibrary{arrows, decorations.markings, decorations.pathmorphing, calc,
+positioning}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\input{spr_titlepage.tex}
+
+\section{Wstęp}
+
+\subsection{Cel ćwiczenia}
+
+Celem ćwiczenia jest zapoznanie się z przykładowym oprogramowaniem pozwalającym
+na realizację sterowania cyfrowego w oparciu o komputer klasy PC oraz
+zapoznanie się z przykładem interfejsu procesowego dla komputera klasy PC. 
+
+\subsection{Opis stanowiska} 
+Stanowisko laboratoryjne składa się z komputera PC z zainstalowanym pakietem
+\textsc{GENIE} oraz stacji akwizycji danych \textit{ADAM5000} wyposażonej w
+odpowiednie moduły we/wy:
+
+\begin{itemize}
+  \item \textit{ADAM5060} - dyskretne wyjścia przekaźnikowe
+  \item \textit{ADAM5018} - wejścia analogowe specjalizowane do obsługi termopar
+  \item \textit{ADAM5013} - wejścia termometru oporowego \textsc{Pt100}
+\end{itemize}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\input{schemat_stanowiska.tex}
+	\end{center}
+	\caption{Schemat stanowiska}
+\end{figure}
+
+\newpage
+
+\section{Przebieg ćwiczenia}
+
+Ćwiczenie składa się z dwóch części:
+
+\begin{itemize}
+  \item Realizacja zmierzchowego włącznika oświetlenia
+  \item Realizacja dwupołożeniowego regulatora temperatury
+\end{itemize}
+
+Po sprawdzeniu poprawności działania podstawowych funkcjonalności stanowiska
+prostymi programami testowymi przystąpiliśmy do wykonania ćwiczenia.
+
+\subsection{Włącznik zmierzchowy}
+
+Zamierzona strategia działania włącznika jest następująca:
+
+\begin{itemize}
+  \item Włączenie lampy na pewien zadany czas, gdy poziom oświetlenia spadnie
+  poniżej wartości progowej
+  \item Możliwość niezależnego od czujnika stałego włączenia lampy
+  \item Możliwość zablokowania automatu włączającego lampę
+  \item Pomiar aktualnej temperatury czujnikiem rezystancyjnym \textsc{Pt100}
+\end{itemize}
+
+Dodatkowo w oknie \textit{Display} należy umieścić wizualizację czasowego
+przebiegu aktualnego oświetlenia i zadanego progu zadziałania, oraz aktualną
+temperaturę otoczenia. Po krótkim przeanalizowaniu postawionego problemu
+stworzyliśmy następujący schemat działania projektowanego włącznika:
+
+\begin{figure}[!htb]
+	\begin{center}
+		\includegraphics[width=\linewidth]{../res/img/task1.png}
+	\end{center}
+	\caption{Schemat włącznika zmierzchowego}\label{sch:task1}
+\end{figure}
+
+Funkcje logiczne sterujące stoperem i lampą to:
+
+\begin{equation*}
+	DO1=ON/OFF\vee ((STOPER\leq CZAS)\wedge \overline{BLOCK}\wedge (POZIOM\leq
+	PROG))
+\end{equation*}
+
+\begin{equation*}
+	STOPER\_RST=\overline{\overline{BLOCK}\wedge (POZIOM\leq PROG)}
+\end{equation*}
+
+\newpage
+
+\begin{figure}[!htb]
+	\begin{center}
+		\includegraphics[width=\linewidth]{../res/img/disp1.png}
+	\end{center}
+	\caption{Wizualizacja działania włącznika zmierzchowego}
+\end{figure} 
+
+Na panelu operatorskim zostały umieszczone kontrolki zawarte w opisie wykonania
+zadania.
+
+W trakcie trwania ćwiczenia w celu sprawdzenia poprawności działania
+zaprojektowanego włącznika został sprawdzony szereg scenariuszy przebiegu
+natężenia oświetlenia i w każdym wypadku włącznik działał zgodnie z założonymi
+wytycznymi.
+
+Opis poszczególnych bloków na schemacie \ref{sch:task1}:
+
+\begin{itemize}
+  \item AI1 - wejście ogniwa fotowoltaicznego
+  \item DO1 - przekaźnik załączający lampę
+  \item BBINT1 - przycisk ON/OFF niezależnie włączający lampę
+  \item BBINT2 - przycisk BLOCK blokujący automat załączający lampę
+  \item NCTL1 - formant w którym w oknie display wybieramy czas świecenia lampy
+  \item SPIN1 - formant w którym w oknie display wybieramy próg zadziałania
+  włącznika
+\end{itemize}
+
+\newpage
+
+\subsection{Dwupołożeniowy regulator temperatury}
+
+Drugą częścią ćwiczenia jest implementacja dwupołożeniowego regulatora
+temperatury, gdzie elementem grzewczym będzie lampa, natomiast obiektem
+regulacji i jednocześnie czujnikiem pomiarowym jest czujnik \textsc{Pt100}
+podłączony do modułu \textit{ADAM5013}.
+
+Do jego realizacji użyliśmy wbudowanego w pakiet \textsc{GENIE} bloku
+\textit{ON/OFF}. Blok ten posiada dwa wejścia, ustalające wartość zadaną oraz
+wejście przyjmujące sygnał regulowany, i jedno wyjście załączające element
+wykonawczy. Histerezę regulacyjną ustawia się wewnątrz bloku \textit{ON/OFF}. W
+zaprezentowanym przykładzie histereza wynosi $\pm 1^{\circ}C$
+
+\begin{figure}[!htb]
+	\begin{center}
+		\includegraphics[width=9cm]{../res/img/task2.png}
+	\end{center}
+	\caption{Schemat układu regulacji}
+\end{figure}
+
+\begin{figure}[!htb]
+	\begin{center}
+		\includegraphics[width=\linewidth]{../res/img/disp2.png}
+	\end{center}
+	\caption{Wizualizacja działania regulatora}
+\end{figure} 
+
+\newpage
+
+\section{Wnioski i spostrzeżenia}
+
+W ćwiczeniu zapoznaliśmy się z działaniem systemu akwizycji danych opartym na
+stacji firmy \textsc{Advantech}. Z jego pomocą jesteśmy w stanie zaimplementować
+algorytmy sterowania procesami, oraz utworzyć prosty panel operatorski z
+możliwością zadania nastaw i obserwacji wyników działania w czasie prawie
+rzeczywistym.
+Producent przewidział rozszerzenie podstawowej funkcjonalności stacji
+\textit{ADAM} przez szereg dołączalnych modułów, dzięki którym jesteśmy w stanie
+sterować elementami wykonawczymi, dokonać pomiaru napięcia analogowego, czy w
+sposób uproszczony do minimum odczytywać temperaturę z zewnętrznych czujników
+rezystancyjnych tudzież termoparowych.
+
+Obydwa zadania postawione w instrukcji były na tyle nieskomplikowane, iż byliśmy
+w stanie zaimplementować je ograniczając się do użycia standardowych bloków
+pakietu \textsc{GENIE}.
+
+\end{document}
+
+

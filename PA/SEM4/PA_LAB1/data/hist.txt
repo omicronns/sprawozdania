@@ -1,0 +1,194 @@
+G1=[k]
+k=1;T1=1;T2=1;T0=1;T=1;E=1;Ti=1;Td=1;tau=1;
+G1=[0 k;T 1];
+G2=[0 0 k; T1*T2 T1+T2 1];
+G3=[0 0 k; T0*T0 2*E*T0 1];
+G4=[0 0 k; Ti*T Ti 0];
+G5=[Td 0; T 1];
+[dell, delm]=pade(tau,5)
+clear dell, delm
+clear delm
+step1=step(G1(1,:),G1(2,:)
+t=[0:0.1:100];
+step1=step(G1(1,:),G1(2,:),t);
+t=t';
+plot(t,step1)
+T=10;
+step1=step(G1(1,:),G1(2,:),t);
+plot(t,step1)
+G1=[0 k;T 1];
+step1=step(G1(1,:),G1(2,:),t);
+plot(t,step1)
+step11=step(G1(1,:),G1(2,:),t);
+T=15;
+G1=[0 k;T 1];
+step1=step(G1(1,:),G1(2,:),t);
+step12=step(G1(1,:),G1(2,:),t);
+clear step1
+plot(t,step11,t,step12)
+step21=step(G2(1,:),G2(2,:),t);
+plot(t,step21)
+T1=10;T2=15;
+G2=[0 0 k; T1*T2 T1+T2 1];
+step21=step(G2(1,:),G2(2,:),t);
+plot(t,step21)
+T1=5;T2=20;
+step21=step(G2(1,:),G2(2,:),t);
+plot(t,step21)
+T1=5;T2=10;
+step22=step(G2(1,:),G2(2,:),t);
+plot(t,step21,t,step22)
+G2=[0 0 k; T1*T2 T1+T2 1];
+step22=step(G2(1,:),G2(2,:),t);
+plot(t,step21,t,step22)
+T0=10;E=5
+G3=[0 0 k; T0*T0 2*E*T0 1];
+step12=step(G1(1,:),G1(2,:),t);
+plot(t,step11,t,step12)
+step31=step(G3(1,:),G3(2,:),t);
+plot(t,step31)
+E=0.5;
+G3=[0 0 k; T0*T0 2*E*T0 1];
+step31=step(G3(1,:),G3(2,:),t);
+plot(t,step31)
+T0=5;
+G3=[0 0 k; T0*T0 2*E*T0 1];
+step31=step(G3(1,:),G3(2,:),t);
+plot(t,step31)
+T0=10;
+G3=[0 0 k; T0*T0 2*E*T0 1];
+step31=step(G3(1,:),G3(2,:),t);
+T0=5;
+G3=[0 0 k; T0*T0 2*E*T0 1];
+step32=step(G3(1,:),G3(2,:),t);
+plot(t,step31,t,step32)
+Ti=10;
+T=5;
+G4=[0 0 k; Ti*T Ti 0];
+step41=step(G4(1,:),G4(2,:),t);
+plot(t,step41)
+refgs
+T=10;
+refgs
+step41=step(G4(1,:),G4(2,:),t);
+plot(t,step41)
+T=20;Ti=20;
+refgs
+step42=step(G4(1,:),G4(2,:),t);
+plot(t,step41,t,step42)
+Td=10;
+T=10;
+refgs
+step51=step(G5(1,:),G5(2,:),t);
+plot(t,step51)
+T=15;Td=5;
+refgs
+step52=step(G5(1,:),G5(2,:),t);
+plot(t,step51,t,step52)
+T=15;Td=15;
+refgs
+step52=step(G5(1,:),G5(2,:),t);
+plot(t,step51,t,step52)
+T=15;Td=10;
+refgs
+step52=step(G5(1,:),G5(2,:),t);
+plot(t,step51,t,step52)
+[Gdel(1,:),Gdel(2,:)]=pade(tau,5);
+G6=1
+refgs
+n=5;
+refgs
+Gdel(1,:)
+Gdel(2,:)
+G1(1,:),G1(2,:)
+[G6(1,:),G6(2,:)]=series(Gdel(1,:),Gdel(2,:),G1(1,:),G1(2,:))
+G6=G1
+[G6(1,:),G6(2,:)]=series(Gdel(1,:),Gdel(2,:),G1(1,:),G1(2,:))
+clear G6
+[G6(1,:),G6(2,:)]=series(Gdel(1,:),Gdel(2,:),G1(1,:),G1(2,:))
+refgs
+A=[1 2;3 4]
+A(1,:) = [ 1 2 3 ]
+clear A
+step61=step(G6(1,:),G6(2,:),t);
+plot(t,step61)
+tau=10;
+refgs
+step61=step(G6(1,:),G6(2,:),t);
+plot(t,step61)
+n=20;
+refgs
+step61=step(G6(1,:),G6(2,:),t);
+plot(t,step61)
+tau=30; T=25;
+refgs
+step62=step(G6(1,:),G6(2,:),t);
+plot(t,step61,t,step62)
+help pulse
+help impulse
+T=10;
+imp11=impulse(G1(1,:),G1(2,:),t);
+plot(t,imp11)
+refgs
+imp11=impulse(G1(1,:),G1(2,:),t);
+plot(t,imp11)
+T=15;
+imp12=impulse(G1(1,:),G1(2,:),t);
+refgs
+imp12=impulse(G1(1,:),G1(2,:),t);
+plot(t,imp11,t,imp12)
+T=10;
+T1=10;
+refgs
+imp21=impulse(G2(1,:),G2(2,:),t);
+plot(t,imp21)
+T1=5;T2=20;
+refgs
+imp22=impulse(G2(1,:),G2(2,:),t);
+clear ans
+uiopen('C:\Documents and Settings\podstawy\Pulpit\lab1\hist2.txt',1)
+diary on
+clear ans
+uiopen('C:\Documents and Settings\podstawy\Pulpit\lab1\hist2.txt',1)
+T0=10;
+imp31=impulse(G3(1,:),G3(2,:),t);
+refgs
+imp31=impulse(G3(1,:),G3(2,:),t);
+plot(t,imp31)
+T0=15;E=0.3;
+refgs
+imp32=impulse(G3(1,:),G3(2,:),t);
+plot(t,imp31,t,imp32)
+Ti=10;T=20;
+refgs
+imp41=impulse(G4(1,:),G4(2,:),t);
+plot(t,imp41)
+Ti=5;T=10;
+refgs
+imp42=impulse(G4(1,:),G4(2,:),t);
+plot(t,imp41,t,imp42)
+refgs
+imp51=impulse(G5(1,:),G5(2,:),t);
+plot(t,imp51)
+Td=5;T=5;
+refgs
+imp52=impulse(G5(1,:),G5(2,:),t);
+plot(t,imp51,t,imp52)
+tau=10;T=10;
+refgs
+imp61=impulse(G6(1,:),G6(2,:),t);
+plot(t,imp61)
+T=2;
+refgs
+imp62=impulse(G6(1,:),G6(2,:),t);
+plot(t,imp61,t,imp62)
+n=100;
+refgs
+imp62=impulse(G6(1,:),G6(2,:),t);
+plot(t,imp61,t,imp62)
+n=20;
+refgs
+imp62=impulse(G6(1,:),G6(2,:),t);
+plot(t,imp61,t,imp62)
+uiopen('C:\Documents and Settings\podstawy\Pulpit\lab1\hist2.txt',1)
+diary off

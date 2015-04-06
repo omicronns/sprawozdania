@@ -1,0 +1,4 @@
+/tmp
+*.synctex.gz
+*_texout.pdf
+*-converted-to.pdf

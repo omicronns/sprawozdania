@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="279" key="DIALOG_WIDTH"/>
+		<item value="157" key="DIALOG_Y_ORIGIN"/>
+		<item value="891" key="DIALOG_X_ORIGIN"/>
+		<item value="411" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="true" key="wrap"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="false" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="res/img" key="selection"/>
+		<list key="findhistory">
+			<item value="images"/>
+			<item value="ENC_VAL_END"/>
+			<item value="ENC_B_LAST"/>
+			<item value="ENC_A_LAST"/>
+			<item value="clk"/>
+			<item value="val"/>
+			<item value="s3e_lcd"/>
+			<item value="cnt"/>
+		</list>
+		<list key="replacehistory">
+			<item value="res/img"/>
+			<item value="CNT_VAL"/>
+			<item value="ENC_B_PREV"/>
+			<item value="ENC_A_PREV"/>
+			<item value="CLK"/>
+			<item value="VAL"/>
+			<item value="S3E_LCD"/>
+			<item value="CNT"/>
+		</list>
+	</section>
+</section>

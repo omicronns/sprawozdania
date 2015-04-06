@@ -1,0 +1,185 @@
+\pgfmathsetmacro{\bloczekr}{50}
+
+\def\bloczek at (#1,#2){
+	\draw 	(#1,#2) circle (\bloczekr/3 pt)
+			(#1,#2) circle (\bloczekr pt)
+}
+
+\def\masa at (#1,#2){
+	\draw 	(#1-2.5*\bloczekr pt,#2-1.5*\bloczekr pt)
+			rectangle +(5*\bloczekr pt,3*\bloczekr pt)
+}
+
+\def\sprezyna at (#1,#2){
+	\draw	(#1,#2) --
+			++(180:50pt)--
+			++(120:50pt) --
+			++(-120:100pt)--
+			++(120:100pt) --
+			++(-120:100pt)--
+			++(120:100pt) --
+			++(-120:100pt) --
+			++(120:50pt) --
+			++(180:50pt);
+}
+
+\def\gndhr at (#1,#2){
+	\draw	(#1,#2)
+			++(0,-2.5*\bloczekr pt) --
+			++(0,5*\bloczekr pt);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(0,-2.5*\bloczekr pt+\y*\bloczekr pt) --
+				+(135:50pt);
+	}
+}
+
+\def\gndhl at (#1,#2){
+	\draw	(#1,#2)
+			++(0,-2.5*\bloczekr pt) --
+			++(0,5*\bloczekr pt);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(0,-2.5*\bloczekr pt+\y*\bloczekr pt) --
+				+(45:50pt);
+	}
+}
+
+\def\gndvd at (#1,#2){
+	\draw	(#1,#2)
+			++(-2.5*\bloczekr pt,0) --
+			++(5*\bloczekr pt,0);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(-2.5*\bloczekr pt+\y*\bloczekr pt,0) --
+				+(45:50pt);
+	}
+}
+
+\def\gndvu at (#1,#2){
+	\draw	(#1,#2)
+			++(-2.5*\bloczekr pt,0) --
+			++(5*\bloczekr pt,0);
+	\foreach \y in {0,1,2,3,4}{
+		\draw 	(#1,#2)
+				++(-2.5*\bloczekr pt+\y*\bloczekr pt,0) --
+				+(-45:50pt);
+	}
+}
+
+\def\tlumik at (#1,#2){
+	\draw	(#1,#2)
+			++(150pt,-50pt) --
+			++(-150pt,0) --
+			++(0,100pt) -- 
+			++(150pt,0);
+	\draw[ultra thick]
+			(#1,#2)
+			++(100pt,-50pt) --
+			++(0,100pt);
+}
+
+\begin{tikzpicture}[scale=0.13]
+
+\draw[very thick,-latex]
+	(-2400pt,0) -- node[below]{$$}
+	(-1400pt,0);
+
+\masa at (0,0); %m1
+\draw	(0,0)
+		++(0,130pt) node{$m_1$};
+\coordinate (mz) at (-2.5*\bloczekr pt, 0);
+
+\draw	(mz) -- node[below]{$x$}
+		(-10*\bloczekr pt,0) -- node[left]{$h$}
+		(-10*\bloczekr pt, 10*\bloczekr pt);
+\draw	(-10*\bloczekr pt,0)
+		++(0,10*\bloczekr*1.17 pt)
+		++(0,-300pt)
+		arc (-90:-57:300pt)
+		+(-100pt,50pt) node{$\theta$};
+
+\bloczek at (-10*\bloczekr pt, 10*\bloczekr pt); %b1
+\draw 	(mz) -- 
+		($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+		({atan(0.75)}:\bloczekr pt)$);
+\draw	($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+		(90:\bloczekr pt)$) --
+		(-16*\bloczekr pt, 11*\bloczekr pt);
+\sprezyna at (-16*\bloczekr pt, 11*\bloczekr pt); %k1
+\draw	(-16*\bloczekr pt, 11*\bloczekr pt)
+		++(-200pt,-120pt) node{$k_1$};
+\draw 	($(-16*\bloczekr pt, 11*\bloczekr pt) +
+		(-400pt,0)$) --
+		($(-30*\bloczekr pt, 12*\bloczekr pt) +
+		(-90:\bloczekr pt)$);
+\bloczek at (-30*\bloczekr pt, 12*\bloczekr pt); %b3
+\masa at (-30*\bloczekr pt, 12*\bloczekr pt); %m2
+\draw	(-30*\bloczekr pt, 12*\bloczekr pt)
+		++(0,130pt) node{$m_2$};
+\draw 	($(-30*\bloczekr pt, 12*\bloczekr pt) +
+		(90:\bloczekr pt)$) --
+		($(-10*\bloczekr pt, 14*\bloczekr pt) +
+		(-90:\bloczekr pt)$);
+\bloczek at (-10*\bloczekr pt, 14*\bloczekr pt); %b2
+\draw 	(-30*\bloczekr pt, 12*\bloczekr pt)
+		++(-2.5*\bloczekr pt, 0) --
+		++(-200pt,0);
+\draw	(-10*\bloczekr pt, 14*\bloczekr pt)
+		++(\bloczekr pt, 0) --
+		++(0,200pt);
+\gndvd at (-9*\bloczekr pt, 14*\bloczekr pt + 200pt);
+\sprezyna at (-30*\bloczekr pt -2.5*\bloczekr pt-200pt, 12*\bloczekr pt); %k2
+\draw	(-30*\bloczekr pt -2.5*\bloczekr pt-200pt, 12*\bloczekr pt)
+		++(-200pt,-120pt) node{$k_2$};
+\draw	(-30*\bloczekr pt -2.5*\bloczekr pt-600pt, 12*\bloczekr pt) --
+		++(-100pt,0);
+\gndhr at (-30*\bloczekr pt -2.5*\bloczekr pt-800pt, 12*\bloczekr pt);
+\tlumik at (-30*\bloczekr pt -2.5*\bloczekr pt-800pt, 12*\bloczekr pt);
+\draw (-30*\bloczekr pt -2.5*\bloczekr pt-800pt, 12*\bloczekr pt)
+		node[above right,yshift=10pt]{$m_3$};
+
+\begin{scope}[yscale=-1]
+	\bloczek at (-10*\bloczekr pt, 10*\bloczekr pt); %b1
+	\draw 	(mz) -- 
+			($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+			({atan(0.75)}:\bloczekr pt)$);
+	\draw	($(-10*\bloczekr pt, 10*\bloczekr pt) + 
+			(90:\bloczekr pt)$) --
+			(-16*\bloczekr pt, 11*\bloczekr pt);
+	\sprezyna at (-16*\bloczekr pt, 11*\bloczekr pt); %k1
+	\draw	(-16*\bloczekr pt, 11*\bloczekr pt)
+			++(-200pt,-120pt) node{$k_1$};
+	\draw 	($(-16*\bloczekr pt, 11*\bloczekr pt) +
+			(-400pt,0)$) --
+			($(-30*\bloczekr pt, 12*\bloczekr pt) +
+			(-90:\bloczekr pt)$);
+	\bloczek at (-30*\bloczekr pt, 12*\bloczekr pt); %b3
+	\masa at (-30*\bloczekr pt, 12*\bloczekr pt); %m2
+	\draw	(-30*\bloczekr pt, 12*\bloczekr pt)
+			++(0,130pt) node{$m_2$};
+	\draw 	($(-30*\bloczekr pt, 12*\bloczekr pt) +
+			(90:\bloczekr pt)$) --
+			($(-10*\bloczekr pt, 14*\bloczekr pt) +
+			(-90:\bloczekr pt)$);
+	\bloczek at (-10*\bloczekr pt, 14*\bloczekr pt); %b2
+	\draw 	(-30*\bloczekr pt, 12*\bloczekr pt)
+			++(-2.5*\bloczekr pt, 0) --
+			++(-200pt,0);
+	\draw	(-10*\bloczekr pt, 14*\bloczekr pt)
+			++(\bloczekr pt, 0) --
+			++(0,200pt);
+	\gndvd at (-9*\bloczekr pt, 14*\bloczekr pt + 200pt);
+	\sprezyna at (-30*\bloczekr pt -2.5*\bloczekr pt-200pt, 12*\bloczekr pt); %k2
+	\draw	(-30*\bloczekr pt -2.5*\bloczekr pt-200pt, 12*\bloczekr pt)
+			++(-200pt,-120pt) node{$k_2$};
+	\draw	(-30*\bloczekr pt -2.5*\bloczekr pt-600pt, 12*\bloczekr pt) --
+			++(-100pt,0);
+	\gndhr at (-30*\bloczekr pt -2.5*\bloczekr pt-800pt, 12*\bloczekr pt);
+	\tlumik at (-30*\bloczekr pt -2.5*\bloczekr pt-800pt, 12*\bloczekr pt);
+	\draw (-30*\bloczekr pt -2.5*\bloczekr pt-800pt, 12*\bloczekr pt)
+		node[below right,yshift=-10pt]{$m_3$};
+\end{scope}
+
+
+\end{tikzpicture}

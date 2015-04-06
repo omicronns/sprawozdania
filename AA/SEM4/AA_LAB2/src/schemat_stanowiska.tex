@@ -1,0 +1,166 @@
+\begin{tikzpicture}
+	\coordinate (BL) 	at 	(0,0);
+	\coordinate (TR) 	at 	(10,5);
+	\coordinate (BLR) 	at 	(3,-4);
+	\coordinate (TRR) 	at 	(7,-1);
+	\coordinate (HSH) 	at 	(4.5,1.5);
+	
+	\coordinate (PT1) 	at 	($(BL)+(5-0.3,0)$);
+	\coordinate (PT2) 	at 	($(BL)+(5,0)$);
+	\coordinate (PT3) 	at 	($(BL)+(5+0.3,0)$);
+	\coordinate (W1) 	at 	($(TR)+(-1.5,-5)$);
+	\coordinate (W2) 	at 	($(TR)+(-2,-5)$);
+	\coordinate	(W0)	at	($(W2)+(0.25,2.5)$); 
+	\coordinate (H1I)	at	($(BL)+(HSH)+(0,0.3)$);
+	\coordinate (H2I)	at	($(BL)+(HSH)+(0,1.7)$);
+	\coordinate (H1B)	at	($(BL)+(1.5,0)$);
+	\coordinate (H2B)	at	($(BL)+(2,0)$);
+	
+	\path[name path=H1Ih] (H1I) -- ++(-4,0);
+	\path[name path=H2Ih] (H2I) -- ++(-4,0);
+	\path[name path=H1Bv] (H1B) -- ++(0,4);
+	\path[name path=H2Bv] (H2B) -- ++(0,4);
+	
+	\path[name intersections={of=H1Ih and H2Bv}];
+	\coordinate (H1IB) at (intersection-1);
+	\path[name intersections={of=H2Ih and H1Bv}];
+	\coordinate (H2IB) at (intersection-1);
+	
+	\draw
+		(H1B)	--
+		(H2IB)	--
+		(H2I);
+	\draw
+		(H2B)	--
+		(H1IB)	--
+		(H1I);
+
+	\draw
+		(W2)
+		++(-0.5,1.5)	rectangle
+		++(1.5,2);
+	\draw
+		(W0) .. controls +(120:1) and +(60:1) .. (W0)
+		(W0) .. controls +(-120:1) and +(-60:1) .. (W0)
+		(W0) .. controls +(-30:1) and +(30:1) .. (W0)
+		(W0) .. controls +(150:1) and +(-150:1) .. (W0);
+	\draw[-latex]
+		(W0)
+		++(-1,0)	--
+		+(-1,0);
+	\draw[-latex]
+		(W0)
+		++(-1,0.5)	--
+		+(-1,0); 
+	\draw[-latex]
+		(W0)
+		++(-1,-0.5)	--
+		+(-1,0);
+	\draw
+		(W0)	circle (0.7);
+	\draw
+		(W1)	--
+		++(0,1.5)
+		(W2)	--
+		++(0,1.5);
+		
+	\draw
+		(H1B)	--
+		++(0,-1)
+		+(0,-0.07)	circle (0.07)	node[left,yshift=-6]{$230V$}
+		++(0,-0.5)	circle (0.07)
+		++(0,-0.07)	--
+		++(0,-1.25)	--
+		+(1.5,0);
+	\draw
+		(H2B)		--
+		++(0,-2.2)	--
+		+(1,0)	node[right,yshift=-10]{\textsc{Wyj}};
+
+	\draw
+		(W1)	--
+		++(0,-1)
+		+(0,-0.07)	circle (0.07)	node[right,yshift=-6]{$230V$}
+		++(0,-0.5)	circle (0.07)
+		++(0,-0.07)	--
+		++(0,-1.25)	--
+		+(-1.5,0);
+	\draw
+		(W2)		--
+		++(0,-2.2)	--
+		+(-1,0)	node[left,yshift=-10]{\textsc{Al1}};
+		
+	\draw
+		(BLR)	node[below right]{\textsc{RE31}}; 
+
+	\draw
+		(BLR)	rectangle
+		(TRR);
+		
+	\draw
+		(PT1)	--
+		++(0,-1)
+		(PT2)	--
+		++(0,-1)	node[below]{\textsc{Wej}}
+		(PT3)	--
+		++(0,-1);
+
+	\draw
+		(H1I)			--
+		++(0.3,0)		--
+		++(0.4,1.4/6)	--
+		++(-0.4,1.4/6)	--
+		++(0.4,1.4/6)	--
+		++(-0.4,1.4/6)	--
+		++(0.4,1.4/6)	--
+		++(-0.4,1.4/6)	--
+		(H2I);
+	
+	\draw[dashed]
+		(BL) rectangle (TR);
+	\draw
+		($(BL)+(HSH)$)	rectangle
+		($(TR)-(HSH)$);
+	\filldraw[color=black]
+		(BL)
+		++(5-0.3,0) circle 	(0.07)
+		++(0.3,0) 	circle 	(0.07)
+		++(0.3,0) 	circle 	(0.07);
+	\filldraw[color=black]
+		(TR)
+		++(-5-0.3,0)circle 	(0.07)
+		++(0.3,0) 	circle 	(0.07)
+		++(0.3,0) 	circle 	(0.07);
+	\filldraw[color=black]
+		(W1)		circle 	(0.07)
+		(W2)		circle 	(0.07);
+	\filldraw[color=black]
+		(H1B)		circle 	(0.07)
+		(H2B)		circle 	(0.07);
+		
+	\draw	%PT1001
+		($(BL)+(HSH)$)
+		++(0.4,0)		rectangle
+		++(0.2,-0.5)
+		++(-0.1,0)		--
+		++(0,-1)
+		++(0,1)			--
+		++(-0.3,-0.3)	--
+		++(0,-0.7)
+		++(0.3,1)		--	node[above right]{\textsc{\small Pt100}}
+		++(0.3,-0.3)	--
+		++(0,-0.7);
+	\draw	%PT1002
+		($(TR)-(HSH)$)
+		++(-0.4,0)		rectangle
+		++(-0.2,0.5)
+		++(0.1,0)		--
+		++(0,1)
+		++(0,-1)		--	node[below right]{\textsc{\small Pt100}}
+		++(0.3,0.3)		--
+		++(0,0.7)
+		++(-0.3,-1)		--
+		++(-0.3,0.3)	--
+		++(0,0.7);
+	
+\end{tikzpicture}

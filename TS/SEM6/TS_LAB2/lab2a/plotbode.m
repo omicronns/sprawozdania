@@ -1,0 +1,2 @@
+prepGo
+bode(Go)

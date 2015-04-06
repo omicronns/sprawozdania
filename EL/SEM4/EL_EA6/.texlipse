@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Mon Apr 06 16:20:26 CEST 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=EL_EA6.tex
+outputFile=EL_EA6_texout.pdf
+langSpell=pl
+markDer=true
+srcDir=src/
