@@ -13,18 +13,19 @@ function callback_solve(~,~)
     global max_iters;
     global stop_eps;
     
+    i       = 0;
     xkp     = xk;
     xk      = minimstep(xk, opti_fun, opti_grad, max_step);
-    i       = 0;
     
     while((i < max_iters) && (norm(xk - xkp) > stop_eps))
-        i           = i + 1;
-        xkp         = xk;
-        xk          = minimstep(xk, opti_fun, opti_grad, max_step);
         x           = x_opti;
         x(x_idx)    = xk(x_idx);
         x(y_idx)    = xk(y_idx);
         opti_path   = [opti_path;xk];
         plot3(canvas, xk(x_idx), xk(y_idx), opti_fun(x), '*')
+        
+        i           = i + 1;
+        xkp         = xk;
+        xk          = minimstep(xk, opti_fun, opti_grad, max_step);
     end
 end
