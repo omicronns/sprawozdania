@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;PA_LAB5/images&apos; to &apos;img&apos;" description="Rename resource &apos;images&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="images" name="img" stamp="1428321615497" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;PA_LAB5/sources&apos; to &apos;src&apos;" description="Rename resource &apos;sources&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="sources" name="src" stamp="1428321619882" updateReferences="true"/>
-</session>
