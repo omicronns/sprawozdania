@@ -1,5 +1,5 @@
 %Funkcjonał v1
-[l, att, natt, nst, ndn] = checkLap2(8, @(x) true, @v1, @v1grad, @rs1);
+[l, att, natt, nst, ndn] = checkLap2(8, @(x) true, @v1, @v1grad, @sequ1);
 figure
 axis([-8 8 -8 8])
 hold on
@@ -15,15 +15,15 @@ end
 if(~isempty(ndn))
     plot(ndn(:,1), ndn(:,2),'c.')
 end
-for ii=1:10
+for ii=1:5
     [tout yout] = ... 
-        ode45(@(t, y) rs1(y), [0 10], att(uint32(rand()*length(att)),:));
+        ode45(@(t, y) sequ1(y), [0 10], att(uint32(rand()*length(att)),:));
     plot(yout(:,1), yout(:,2), 'k-')
 end
 
 %Funkcjonał v2
 [l, att, natt, nst, ndn] = ...
-    checkLap2(8, @(x) x(1)*x(2) < 1, @v2, @v2grad, @rs1);
+    checkLap2(8, @(x) x(1)*x(2) < 1, @v2, @v2grad, @sequ1);
 figure
 axis([-8 8 -8 8])
 hold on
@@ -39,8 +39,8 @@ end
 if(~isempty(ndn))
     plot(ndn(:,1), ndn(:,2),'c.')
 end
-for ii=1:10
+for ii=1:5
     [tout yout] = ... 
-        ode45(@(t, y) rs1(y), [0 10], att(uint32(rand()*length(att)),:));
+        ode45(@(t, y) sequ1(y), [0 10], att(uint32(rand()*length(att)),:));
     plot(yout(:,1), yout(:,2), 'k-')
 end

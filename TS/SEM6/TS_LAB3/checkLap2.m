@@ -1,11 +1,12 @@
-function [ l, att, natt, nst, ndn ] = checkLap2( eps, dom, v, vgrad, rs )
+function [ l, att, natt, nst, ndn ] = checkLap2( eps, dom, v, vgrad, sequ )
 %CHECKLAP2 Checks stability of non linear system
 % eps   - space to be checked
 % dom   - function handle that returns boolean true if x is in domain false
 %         otherwise
 % v     - Lapunow function handle
 % vgrad - Lapunow function gradient handle
-% rs    - state equation handle
+% sequ  - state equation handle
+%
 % l     - contour threshold
 % att   - attraction set
 % natt  - undetermined attraction set
@@ -28,7 +29,7 @@ function [ l, att, natt, nst, ndn ] = checkLap2( eps, dom, v, vgrad, rs )
                 xk = [space(ii) space(iii)];
                 if(norm(xk) ~= 0)
                     if(dom(xk))
-                        if(v(xk) <= 0 || (vgrad(xk)')*rs(xk) >= 0)
+                        if(v(xk) <= 0 || (vgrad(xk)')*sequ(xk) >= 0)
                             nst = [nst; xk];
                             ltmp = v(xk);
                             if(ltmp < l)
