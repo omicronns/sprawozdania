@@ -1,0 +1,56 @@
+Uruchomienie skryptu runme.m powoduje zaprezentowanie wyników analizy.
+
+Badanie stabilności układów nieliniowych jest zadaniem znacznie trudniejszym
+niż badanie stabilności układów liniowych, które są klasą układów dobrze
+przeanalizowanych, do badania których znany jest szeroki aparat sprawdzonych
+i względnie prostych metod.
+
+Druga metoda Lapunowa pozwala stwierdzić, czy istnieje lokalne otoczenie punktu
+stacjonarnego systemu, zwane obszarem atrakcji, które posiada tę własność, iż
+punkty do niego należące wykorzystane jako wartości początkowe równania
+równania różniczkowego będą generować trajektorie asymptotycznie zbiegające
+do owego punktu stacjonarnego(atraktora). Dodatkowo w połączeniu z zasadą
+LaSalle'a jesteśmy w stanie oszacować ów obszar.
+
+Przebieg ćwiczenia:
+
+Podczas wykonywania ćwiczenia zostały przeanalizowane następujące systemy,
+do analizy których zostały wykorzystane podane funkcjonały Lapunowa:
+
+System1:
+
+            2
+    x' = 2yx - x
+    
+    y' = -y
+
+
+              2   2
+    v11 = 0.5x + y;
+
+             2
+            x       2
+    v12 = ------ + y
+          1 - xy
+
+System2:
+                  3
+    x' = y - x + x
+
+    y' = -x
+
+              2      2
+    v21 = 0.5x + 0.5y;
+
+Funkcja checkLap2 wykonuje przegląd zupełny zadanego otoczenia punktu
+zerowego systemu, i na podstawie analizy równania stanu,
+funkcjonału Lapunowa i jego gradientu oblicza charakterystyczne obszary
+płaszczyzny stanu systemu:
+
+
+att   - zbiór przyciągania(zielony)
+natt  - zbiór punktów spełniających warunki Lapunowa, dla których nie
+        nie istnieje poziomica której wszystkie punkty spełniają owe warunki
+        (niebieski)
+nst   - zbiór punktów nie spełniających warunków lapunowa(czerwony)
+ndn   - zbiór punktów wyłączonych z dziedziny poszukiwań(cyjan)
