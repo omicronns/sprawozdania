@@ -1,5 +1,5 @@
 %Funkcjonał v1
-[l, att, natt, nst, ndn] = checkLap2(8, @(x) true, @v1, @v1grad, @sequ1);
+[l, att, natt, nst, ndn] = checkLap2(8, @(x) true, @v11, @v11grad, @sequ1);
 figure
 axis([-8 8 -8 8])
 hold on
@@ -23,7 +23,7 @@ end
 
 %Funkcjonał v2
 [l, att, natt, nst, ndn] = ...
-    checkLap2(8, @(x) x(1)*x(2) < 1, @v2, @v2grad, @sequ1);
+    checkLap2(8, @(x) x(1)*x(2) < 1, @v12, @v12grad, @sequ1);
 figure
 axis([-8 8 -8 8])
 hold on
