@@ -67,7 +67,7 @@ if(~isempty(ndn))
 end
 for ii=1:5
     [tout yout] = ... 
-        ode45(@(t, y) sequ2(y), [0 10], natt(uint32(rand()*(length(natt) - 1) + 1),:));
+        ode45(@(t, y) sequ2(y), [0 10], nst(uint32(rand()*(length(nst) - 1) + 1),:));
     plot(yout(:,1), yout(:,2), 'k-')
 end
 

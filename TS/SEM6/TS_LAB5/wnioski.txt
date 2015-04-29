@@ -1,0 +1,6 @@
+Posiadając dostęp do obiektu, oraz będąc fizycznie w stanie podać nań
+wymuszenia harmoniczne, jesteśmy w stanie empirycznie wyznaczyć jego
+charakterystykę nyquista.
+
+Wyznaczone charakterystyki zostały naniesione na wspólny wykres
+z charakterystykami wyznaczonymi funkcją nyquist(sys) w celach porównawczych.
