@@ -1,6 +1,5 @@
 function gui_callback_reset(~,~)
-% callback_reset:   Prepares axes and variables to run optimization
-%                   algorithm
+% callback_reset:   Restart solver engine
 
     global x_span;
     global y_span;
@@ -11,6 +10,7 @@ function gui_callback_reset(~,~)
     global opti_path;
     global canvas;
     global opti_fun;
+    
     
     % Clear previous path
     opti_path   = [opti_path(1,:)];
