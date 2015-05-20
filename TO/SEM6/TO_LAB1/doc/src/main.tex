@@ -11,6 +11,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{epstopdf}
 \usepackage{multirow}
 \usepackage{tabularx}
@@ -51,6 +52,47 @@
 
 \section*{Abstrakt}
 
-Przed autorem został postawiony problem stworzenia aplikacji w pakiecie 
+Przed autorem został postawiony problem stworzenia aplikacji w pakiecie
+\textsc{Matlab}, implementaującej algorytm największego spadku
+do poszukiwania minimów, na przykładzie funkcji benchmarkowej Rosenbrocka.
+Dodatkowym założeniem dla projektowanej aplikacji była maksymalna elastyczność w
+postaci prostej podmiany minimalizowanej funkcji czy wyboru liczby wymiarów.
+
+\section*{Wstęp}
+
+Metoda największego spadku jest prostą iteracyjną metodą gradientową
+poszukiwania minimów funkcjonałów określonych nad ciałem liczb rzeczywistych:
+
+\begin{equation*}
+    f: \mathbb{R}^{n} \rightarrow \mathbb{R} 
+\end{equation*}
+
+Dodatkowymi założeniami gwarantującymi poprawną zbieżność metody (gwarancja
+zbieżności do minimum globalnego) są:
+
+\begin{itemize}
+  \item $f \in \mathcal{C}^{1}$ (funkcja ciągła i różniczkowalna)
+  \item $f$ jest ściśle wypukła w badanym otoczeniu minimum globalnego
+\end{itemize}
+
+Jako że funkcja Rosenbrocka nie jest funkcją wypukłą na całej przestrzeni
+$\mathbb{R}^{n}$ metoda nie gwarantuje zbieżności do minimum globalnego (dla
+pewnych punktów startowych algorytm może zbiegać do minimum lokalnego, lub
+punktu przegięcia funkcjonału).
+
+\section*{Algorytm metody największego spadku}
+
+Badana metoda jest metodą gradientową, iteracyjną, co oznacza że kolejne
+przybliżenie minimum funkcji jest wyznaczane krokowo na podstawie poprzedniego
+punktu oraz wartości gradientu w danym punkcie, co można przedstawić za pomocą
+rekurencyjnego równania:
+
+\begin{equation}
+    x_{k+1} = \min_{\alpha \in [0, \alpha_{\textrm{m}}]} \left[x_{k} - \alpha \nabla f(x_{k})\right]
+\end{equation}
+
+Zatem problem minimalizacji funkcjonału w przestrzeni wielowymiarowej zostaje
+sprowadzony do wielokrotnej minimalizacji funkcji jednej zmiennej $\alpha$.
+
 
 \end{document}

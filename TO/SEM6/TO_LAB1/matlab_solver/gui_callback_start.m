@@ -1,5 +1,5 @@
-function gui_callback_reset(~,~)
-% callback_reset:   Restart solver engine
+function gui_callback_start(~,~)
+% callback_rand:    Generates random starting point and restart solver engine
 
     global x_span;
     global y_span;
@@ -9,11 +9,19 @@ function gui_callback_reset(~,~)
     global opti_path;
     global canvas;
     global opti_fun;
+    global nspaces;
     
-    
-    % Clear previous path
-    opti_path   = [opti_path(1,:)];
-    xk          = opti_path(1,:);
+    % Get new start point
+    ms = inputdlg('Specify start point:');
+    if(size(ms) ~= [0 0])
+        ms = str2num(ms{1});
+        if(size(ms) == [1 nspaces])
+            opti_path = ms;
+        elseif(size(ms) ~= [0 0])
+            errordlg('Wrong point dimensions');
+        end
+    end
+    xk	= opti_path(1,:);
     
     % Plot section of opti_fun
     cla(canvas);

@@ -5,7 +5,7 @@ function gui_callback_selectxy(~,~)
     global nspaces;
     global x_span;
     global y_span;
-    global x_opti;
+    global xk;
     global x_idx;
     global y_idx;
     global opti_path;
@@ -39,14 +39,14 @@ function gui_callback_selectxy(~,~)
                     x_idx,                      ...
                     y_span(1):0.1:y_span(2),    ...
                     y_idx,                      ...
-                    x_opti);
+                    xk);
 	
     %Plot opti_path
     pathsize = size(opti_path);
     for it=1:pathsize(1)
-        x           = x_opti;
+        x           = xk;
         x(x_idx)    = opti_path(it, x_idx);
         x(y_idx)    = opti_path(it, y_idx);
-        plot3(canvas, opti_path(it, x_idx), opti_path(it, y_idx), opti_fun(x), '*')
+        plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), '*')
     end
 end

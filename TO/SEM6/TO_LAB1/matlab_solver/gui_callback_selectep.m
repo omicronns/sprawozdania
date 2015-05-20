@@ -1,15 +1,15 @@
-function gui_callback_selectms(~,~)
+function gui_callback_selectep(~,~)
 % callback_selectms:    Prompts a dialog to specify max algorith step
 
-    global max_step;
+    global stop_eps;
     
-    ms = inputdlg('Specify max algorithm step:');
+    ms = inputdlg('Specify max epsilon:');
     if(size(ms) ~= [0 0])
         ms = str2num(ms{1});
         switch(length(ms))
             case 0
             case 1
-                max_step = ms;
+                stop_eps = ms;
             otherwise
                 errordlg('Specify only one value');
         end
