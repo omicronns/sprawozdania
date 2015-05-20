@@ -1,0 +1,8 @@
+Zadanie optymalizacji parametrycznej dla układu regulacji automatycznej
+z regulatorem PID jest źle postawione, ponieważ możliwe jest znalezienie
+nastaw bardzo dużego rzędu, które zapewnią optymalne sterowanie, jednak
+przy nieosiągalnych w rzeczywistości wartościach sterowania. Na wyszukiwane
+parametry zostały nałożone ograniczenia [0 100].
+
+W celu zbadania odporności wyznaczonych sterowań zostały wyznaczone wykresy
+nyquista zmodyfikowanych obiektów.

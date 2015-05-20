@@ -1,4 +1,4 @@
-function callback_selectms(~,~)
+function gui_callback_selectms(~,~)
 % callback_selectms:    Prompts a dialog to specify max algorith step
 
     global max_step;

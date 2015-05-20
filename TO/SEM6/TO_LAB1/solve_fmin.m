@@ -1,4 +1,4 @@
-function [ x ] = fmin( fun, x0, x1 )
+function [ x ] = solve_fmin( fun, x0, x1 )
 %FMIN   This function minimises single argument function fun
 %       at [x0,x1] interval
     % Parameters:

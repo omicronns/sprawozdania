@@ -1,9 +1,9 @@
-function callback_selectmi(~,~)
-% callback_selectms:    Prompts a dialog to specify max algorith step
+function gui_callback_selectmi(~,~)
+% callback_selectms:    Prompts a dialog to specify max iterations count
 
     global max_iters;
     
-    ms = str2double(inputdlg('Specify max iterations count:'));
+    ms = floor(str2double(inputdlg('Specify max iterations count:')));
     switch(length(ms))
         case 0
         case 1

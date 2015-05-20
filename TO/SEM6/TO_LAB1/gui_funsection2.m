@@ -1,5 +1,5 @@
-function [ out ] = funsection2( ahandle, fun, x, x_idx, y, y_idx, static_arg )
-%FUNSUB2 Summary of this function goes here
+function [ out ] = gui_funsection2( ahandle, fun, x, x_idx, y, y_idx, static_arg )
+%FUNSUB2 Plots section of function at given spaces indexes
 %   Detailed explanation goes here
 
     z = zeros(length(x), length(y));

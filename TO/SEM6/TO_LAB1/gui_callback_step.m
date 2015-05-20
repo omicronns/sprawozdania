@@ -1,4 +1,4 @@
-function callback_step(~,~)
+function gui_callback_step(~,~)
 % callback_step: 	Executes one step of optimization algorithm
 
     global x_opti;
@@ -11,7 +11,7 @@ function callback_step(~,~)
     global opti_grad;
     global max_step;
     
-    xk          = minimstep(xk, opti_fun, opti_grad, max_step);
+    xk          = solve_minimstep(xk, opti_fun, opti_grad, max_step);
     x           = x_opti;
     x(x_idx)    = xk(x_idx);
     x(y_idx)    = xk(y_idx);
