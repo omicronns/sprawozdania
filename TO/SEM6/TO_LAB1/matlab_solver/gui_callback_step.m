@@ -10,8 +10,11 @@ function gui_callback_step(~,~)
     global opti_grad;
     global max_step;
     
+    % Calculate next point
     xk          = solve_minimstep(xk, opti_fun, opti_grad, max_step);
     opti_path   = [opti_path;xk];
+    
+    % Plot next point
     x           = opti_path(1,:);
     x(x_idx)    = xk(1, x_idx);
     x(y_idx)    = xk(1, y_idx);

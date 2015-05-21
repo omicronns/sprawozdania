@@ -1,8 +1,6 @@
 function gui_callback_solve(~,~)
 % callback_solve: 	Executes optimization algorithm until stop condition
 
-    global x_span;
-    global y_span;
     global xk;
     global x_idx;
     global y_idx;
@@ -26,15 +24,7 @@ function gui_callback_solve(~,~)
     end
     
     % Plot section of opti_fun
-    cla(canvas);
-    axis([x_span y_span 0 inf]);
-    gui_funsection2(canvas,                     ...
-                    opti_fun,                   ...
-                    x_span(1):0.1:x_span(2),    ...
-                    x_idx,                      ...
-                    y_span(1):0.1:y_span(2),    ...
-                    y_idx,                      ...
-                    xk);
+    gui_replot_fun(xk);
 
     %Plot opti_path
     pathsize = size(opti_path);

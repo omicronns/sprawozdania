@@ -1,5 +1,7 @@
 function [ xk1 ] = solve_minimstep( xk, fun, fungrad, maxstep )
-%MINIMSTEP  This function evaluates one step of steepest descent optimization method.
+%MINIMSTEP  This function evaluates one step of steepest descent
+%           optimization method.
+%
 %           xk      - start point
 %           fun     - function to be minimised
 %                       (should take one vector argument)

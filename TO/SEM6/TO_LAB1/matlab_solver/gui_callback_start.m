@@ -1,8 +1,6 @@
 function gui_callback_start(~,~)
 % callback_rand:    Generates random starting point and restart solver engine
 
-    global x_span;
-    global y_span;
     global xk;
     global x_idx;
     global y_idx;
@@ -19,20 +17,17 @@ function gui_callback_start(~,~)
             opti_path = ms;
         elseif(size(ms) ~= [0 0])
             errordlg('Wrong point dimensions');
+            return;
+        else
+            return;
         end
+    else
+      	return;
     end
     xk	= opti_path(1,:);
     
     % Plot section of opti_fun
-    cla(canvas);
-    axis([x_span y_span 0 inf]);
-    gui_funsection2(canvas,                     ...
-                    opti_fun,                   ...
-                    x_span(1):0.1:x_span(2),    ...
-                    x_idx,                      ...
-                    y_span(1):0.1:y_span(2),    ...
-                    y_idx,                      ...
-                    xk);
+    gui_replot_fun(xk);
 
                 
     % Plot starting point

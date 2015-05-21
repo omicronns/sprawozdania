@@ -24,7 +24,7 @@ y_span      = [-1.5 1.5];       % Peek argument y (one of peek spaces) span
 nspaces     = 10;               % Number of spaces to optimize
                                 % Note: opti_fun and opti_grad must accept
                                 %       nspaces lenght vectors
-stop_eps    = 0.001;            % First stop condition parameter
+stop_eps    = 0.00001;          % First stop condition parameter
 max_iters   = 1000;             % Second stop condition parameter
 max_step    = 0.1;              % Maximum step of algorithm
 x_idx       = 1;                % Init x space index to peek
@@ -46,15 +46,7 @@ canvas = axes('Position', [0.3 0.1 0.65 0.8]);
 hold on;
 
 % Plot section of opti_fun
-cla(canvas);
-axis([x_span y_span 0 inf]);
-gui_funsection2(canvas,                     ...
-                opti_fun,                   ...
-                x_span(1):0.1:x_span(2),    ...
-                x_idx,                      ...
-                y_span(1):0.1:y_span(2),    ...
-                y_idx,                      ...
-                xk);
+gui_replot_fun(xk);
 
 % Plot starting point
 plot3(canvas, xk(x_idx), xk(y_idx), opti_fun(xk), '*');

@@ -5,19 +5,19 @@
 \documentclass[12pt]{article}
 
 \usepackage{polski}
+\usepackage{ucs}
 \usepackage[polish]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage{datetime}
 \usepackage{graphicx}
+\usepackage{color} 
 \usepackage{tikz}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{epstopdf}
 \usepackage{multirow}
 \usepackage{tabularx}
-%\usepackage[colorlinks=true]{hyperref}
-%\usepackage[all]{hypcap}
-%\usepackage{showframe} 
+\usepackage{listings} 
 \usepackage{geometry}
  \geometry{
  	a4paper, 
@@ -26,6 +26,56 @@
  	top		=20mm,
  	bottom	=20mm,
  }
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\small,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2  
+}
+
+\lstset{
+    language=MATLAB,
+    inputencoding=utf8x, 
+    extendedchars=\true,
+    basicstyle=\scriptsize,
+    literate=
+            {ą}{{\k{a}}}1
+            {Ą}{{\k{A}}}1
+            {ę}{{\k{e}}}1
+            {Ę}{{\k{E}}}1
+            {ó}{{\'o}}1
+            {Ó}{{\'O}}1
+            {ś}{{\'s}}1
+            {Ś}{{\'S}}1
+            {ł}{{\l{}}}1
+            {Ł}{{\L{}}}1
+            {ż}{{\.z}}1
+            {Ż}{{\.Z}}1
+            {ź}{{\'z}}1
+            {Ź}{{\'Z}}1
+            {ć}{{\'c}}1
+            {Ć}{{\'C}}1
+            {ń}{{\'n}}1
+            {Ń}{{\'N}}1
+}
  
 %----------------------------------------------------------------------------------------
  
@@ -54,7 +104,8 @@
 
 Przed autorem został postawiony problem stworzenia aplikacji w pakiecie
 \textsc{Matlab}, implementaującej algorytm największego spadku
-do poszukiwania minimów, na przykładzie funkcji benchmarkowej Rosenbrocka.
+do poszukiwania minimum funkcjonału, na przykładzie funkcji benchmarkowej
+Rosenbrocka w wersji dziesięcowymiarowej.
 Dodatkowym założeniem dla projektowanej aplikacji była maksymalna elastyczność w
 postaci prostej podmiany minimalizowanej funkcji czy wyboru liczby wymiarów.
 
@@ -83,16 +134,124 @@ punktu przegięcia funkcjonału).
 \section*{Algorytm metody największego spadku}
 
 Badana metoda jest metodą gradientową, iteracyjną, co oznacza że kolejne
-przybliżenie minimum funkcji jest wyznaczane krokowo na podstawie poprzedniego
-punktu oraz wartości gradientu w danym punkcie, co można przedstawić za pomocą
-rekurencyjnego równania:
+przybliżenie minimum funkcji jest wyznaczane krokowo na podstawie wartości
+funkcji w poprzednim punkcie oraz wartości gradientu w poprzednim punkcie, co
+można przedstawić za pomocą rekurencyjnego równania:
 
 \begin{equation}
-    x_{k+1} = \min_{\alpha \in [0, \alpha_{\textrm{m}}]} \left[x_{k} - \alpha \nabla f(x_{k})\right]
+    x_{k+1} = x_{k} - \alpha_{k} \nabla f(x_{k})
 \end{equation}
 
-Zatem problem minimalizacji funkcjonału w przestrzeni wielowymiarowej zostaje
-sprowadzony do wielokrotnej minimalizacji funkcji jednej zmiennej $\alpha$.
+Gdzie $\alpha_{k}$ jest wyznaczane poprzez minimalizację funkcji jednej
+zmiennej $\alpha$:
 
+\begin{equation}
+    \min_{\alpha \in [0, \alpha_{\textrm{m}}]} f(x_{k} - \alpha \nabla
+    f(x_{k}))
+\end{equation}
+
+Gdzie $\alpha_{m}$ jest maksymalnym krokiem możliwym do wykonania w jednej
+iteracji algorytmu. Zatem problem minimalizacji funkcjonału w przestrzeni
+wielowymiarowej zostaje sprowadzony do wielokrotnej minimalizacji funkcji
+jednej zmiennej $\alpha$.
+
+\subsection*{Warunki stopu}
+
+Autor użył dwóch warunków stopu, przy czym algorytm przestaje działać w
+przypadku zadziałania dowolnego z nich.
+
+Pierwszy z warunków stopu opiera się na spadku wartości minimalizowanej funkcji
+pomiędzy kolejnymi iteracjami algorytmu, tj. jeśli spadek jest niewielki
+zakładamy, iż spowodowane jest to bliskością minimum:
+
+\begin{equation}
+    \varepsilon > \textrm{abs} (f(x_{k+1}) - f(x_{k})) \rightarrow \textrm{STOP}
+\end{equation}
+
+\newpage
+
+Drugi warunek stopu to ograniczenie na liczbę iteracji algorytmu gwarantujące
+jego zakończenie w przypadku niezadziałania kryterium pierwszego.
+
+\begin{equation}
+    i > i_{m} \rightarrow \textrm{STOP}
+\end{equation}
+
+\subsection*{Implementacja w języku Matlab}
+
+Cały solver został zaimplementowany w postaci dwóch funkcji \textsc{Matlab}:
+
+\begin{itemize}
+  \item solve\_fmin - funkcja minimalizująca funkcjonał jednowymiarowy
+  \item solve\_minimstep - funkcja wyliczająca kolejne przybliżenie minimum
+\end{itemize}
+
+\subsubsection*{Implementacja funkcji solve\_fmin}
+
+Funkcja solve\_fmin implementuje algorytm minimalizacji w oparciu o metodę
+złotego podziału. Przyjmuje jako argumenty:
+
+\begin{itemize}
+  \item fun - uchwyt do funkcji, która ma zostać zminimalizowana
+  \item x0 - początkowy punkt przedziału wyszukiwania
+  \item x1 - końcowy punkt przedziału wyszukiwania
+\end{itemize}
+
+\begin{lstlisting}[language=MATLAB, style=mystyle]
+    function [ x ] = solve_fmin( fun, x0, x1 )
+    %FMIN   This function minimises single argument function fun
+    %       at [x0,x1] interval
+        % Parameters:
+        eps = 0.0001;
+        
+        % Body:
+        gd = (sqrt(5) - 1)/2;
+        while(abs(x0 - x1) > eps)
+            xa = x1 - gd*(x1 - x0);
+            xb = x0 + gd*(x1 - x0);
+            if(fun(xa) < fun(xb))
+                x1 = xb;
+            else
+                x0 = xa;
+            end
+        end
+        x = (x0 + x1)/2;
+    end
+\end{lstlisting}
+
+\newpage
+
+\subsubsection*{Implementacja funkcji solve\_minimstep}
+
+Funkcja solve\_minimstep implementuje krok algorytmu minimalizacji w oparciu o
+metodę największego spadku. Poza standardową postacią metody, w poniższej
+implementacji występuje normalizacja wektora gradientu, co pozwala dokładnie
+ograniczyć maksymalny krok algorytmu zmniejszając tym samym jego tendencję
+do błądzenia. Funkcja przyjmuje jako argumenty:
+
+\begin{itemize}
+  \item xk - punkt początkowy kroku minimalizacji
+  \item fun - uchwyt do funkcji, która ma zostać zminimalizowana
+  \item fungrad - uchwyt do gradientu funkcji
+  \item maxstep - ograniczenie na długość kroku ($\alpha_{m}$)
+\end{itemize}
+
+\begin{lstlisting}[language=MATLAB, style=mystyle]
+    function [ xk1 ] = solve_minimstep( xk, fun, fungrad, maxstep )
+    %MINIMSTEP  This function evaluates one step of steepest descent
+    %           optimization method.
+    %
+    %           xk      - start point
+    %           fun     - function to be minimised
+    %                       (should take one vector argument)
+    %           fungrad - function that returns gradient vector of fun
+    
+        dir = fungrad(xk);
+        dir = dir/norm(dir);
+        funmin = @(alpha) fun(xk - alpha*dir);
+        alpha = solve_fmin(funmin, 0, maxstep);
+        xk1 = xk - alpha*dir;
+    end
+\end{lstlisting}
 
 \end{document}

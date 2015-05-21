@@ -1,30 +1,21 @@
 function gui_callback_rand(~,~)
 % callback_rand:    Generates random starting point and restart solver engine
 
-    global x_span;
-    global y_span;
+
+    global nspaces;
     global xk;
     global x_idx;
     global y_idx;
     global opti_path;
     global canvas;
     global opti_fun;
-    global nspaces;
     
     % Get new random start point
-    opti_path       = rand(1,nspaces)*2 - 1;
-    xk              = opti_path(1,:);
+    opti_path   = rand(1,nspaces)*2 - 1;
+    xk          = opti_path(1,:);
     
     % Plot section of opti_fun
-    cla(canvas);
-    axis([x_span y_span 0 inf]);
-    gui_funsection2(canvas,                     ...
-                    opti_fun,                   ...
-                    x_span(1):0.1:x_span(2),    ...
-                    x_idx,                      ...
-                    y_span(1):0.1:y_span(2),    ...
-                    y_idx,                      ...
-                    xk);
+    gui_replot_fun(xk);
 
     % Plot starting point  
     x           = xk;
