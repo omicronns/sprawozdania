@@ -2,7 +2,6 @@ close all
 clear all
 
 % Prepare globals
-global max_step;
 global x_span;
 global y_span;
 global nspaces;
@@ -26,7 +25,6 @@ nspaces     = 10;               % Number of spaces to optimize
                                 %       nspaces lenght vectors
 stop_eps    = 0.00001;          % First stop condition parameter
 max_iters   = 1000;             % Second stop condition parameter
-max_step    = 0.1;              % Maximum step of algorithm
 x_idx       = 1;                % Init x space index to peek
 y_idx       = 2;                % Init y space index to peek
 opti_path   = zeros(1,nspaces); % Vector that will contain optimization history
@@ -46,10 +44,10 @@ canvas = axes('Position', [0.3 0.1 0.65 0.8]);
 hold on;
 
 % Plot section of opti_fun
-gui_replot_fun(xk);
+gui_fun_replot(xk);
 
 % Plot starting point
-plot3(canvas, xk(x_idx), xk(y_idx), opti_fun(xk), '*');
+plot3(canvas, xk(x_idx), xk(y_idx), opti_fun(xk), 'r*');
 
 % Setup GUI
 button_step = uicontrol(fhandle, 'Style', 'push');
@@ -89,19 +87,19 @@ set(button_selectst, 'Position', [buttonX buttonY-3*(buttonHeight/2+spaceBetween
 set(button_selectst, 'CallBack', @gui_callback_start);
 set(button_selectst, 'tooltip', ['Enter new starting point']);
 
+button_selectns = uicontrol(fhandle, 'Style', 'push');
+set(button_selectns, 'String', 'Select spaces count');
+set(button_selectns, 'Units', 'normalized');
+set(button_selectns, 'Position', [buttonX buttonY-4*(buttonHeight/2+spaceBetweenButtons) buttonWidth buttonHeight/2]);
+set(button_selectns, 'CallBack', @gui_callback_selectns);
+set(button_selectns, 'tooltip', ['Pick spaces count to evaluate']);
+
 button_selectxy = uicontrol(fhandle, 'Style', 'push');
 set(button_selectxy, 'String', 'Select indexes');
 set(button_selectxy, 'Units', 'normalized');
-set(button_selectxy, 'Position', [buttonX buttonY-4*(buttonHeight/2+spaceBetweenButtons) buttonWidth buttonHeight/2]);
+set(button_selectxy, 'Position', [buttonX buttonY-5*(buttonHeight/2+spaceBetweenButtons) buttonWidth buttonHeight/2]);
 set(button_selectxy, 'CallBack', @gui_callback_selectxy);
 set(button_selectxy, 'tooltip', ['Pick spaces indexes to peek']);
-
-button_selectms = uicontrol(fhandle, 'Style', 'push');
-set(button_selectms, 'String', 'Select max step');
-set(button_selectms, 'Units', 'normalized');
-set(button_selectms, 'Position', [buttonX buttonY-5*(buttonHeight/2+spaceBetweenButtons) buttonWidth buttonHeight/2]);
-set(button_selectms, 'CallBack', @gui_callback_selectms);
-set(button_selectms, 'tooltip', ['Pick max algorithm step size']);
 
 button_selectmi = uicontrol(fhandle, 'Style', 'push');
 set(button_selectmi, 'String', 'Select max iterations');
@@ -111,11 +109,11 @@ set(button_selectmi, 'CallBack', @gui_callback_selectmi);
 set(button_selectmi, 'tooltip', ['Pick max algorithm iterations count']);
 
 button_selectep = uicontrol(fhandle, 'Style', 'push');
-set(button_selectep, 'String', 'Select epsilon');
+set(button_selectep, 'String', 'Select stop epsilon');
 set(button_selectep, 'Units', 'normalized');
 set(button_selectep, 'Position', [buttonX buttonY-7*(buttonHeight/2+spaceBetweenButtons) buttonWidth buttonHeight/2]);
 set(button_selectep, 'CallBack', @gui_callback_selectep);
-set(button_selectep, 'tooltip', ['Pick max function value decrement ' ...
+set(button_selectep, 'tooltip', ['Pick min function value decrement ' ...
                                  'which will not stop algorithm ']);
 
 set(fhandle,'toolbar','figure');

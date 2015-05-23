@@ -8,23 +8,22 @@ function gui_callback_solve(~,~)
     global canvas;
     global opti_fun;
     global opti_grad;
-    global max_step;
     global max_iters;
     global stop_eps;
     
     i       = 0;
     xkp     = xk;
-    xk      = solve_minimstep(xk, opti_fun, opti_grad, max_step);
+    xk      = solve_minimstep(xk, opti_fun, opti_grad);
     
     while((i < max_iters) && (abs(opti_fun(xk) - opti_fun(xkp)) > stop_eps))
         opti_path   = [opti_path;xk];
         i           = i + 1;
         xkp         = xk;
-        xk          = solve_minimstep(xk, opti_fun, opti_grad, max_step);
+        xk          = solve_minimstep(xk, opti_fun, opti_grad);
     end
     
     % Plot section of opti_fun
-    gui_replot_fun(xk);
+    gui_fun_replot(xk);
 
     %Plot opti_path
     pathsize = size(opti_path);
@@ -32,7 +31,7 @@ function gui_callback_solve(~,~)
         x           = xk;
         x(x_idx)    = opti_path(it, x_idx);
         x(y_idx)    = opti_path(it, y_idx);
-        plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), '*')
+        plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), 'r*')
     end
     
     if(i < max_iters)

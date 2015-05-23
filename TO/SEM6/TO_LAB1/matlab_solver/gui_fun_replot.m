@@ -1,4 +1,4 @@
-function [ ] = gui_replot_fun( static_args )
+function [ ] = gui_fun_replot( static_args )
 %GUI_REPLOT_FUN Summary of this function goes here
 %   Detailed explanation goes here
 

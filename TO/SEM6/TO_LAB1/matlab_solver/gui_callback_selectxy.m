@@ -26,12 +26,12 @@ function gui_callback_selectxy(~,~)
             x_idx = idx(1);
             y_idx = idx(2);
         otherwise
-            errordlg('Choose only two indexes');
+            errordlg('Choose two indexes');
             return;
     end
     
     % Plot section of opti_fun
-    gui_replot_fun(xk);
+    gui_fun_replot(xk);
 	
     %Plot opti_path
     pathsize = size(opti_path);
@@ -39,6 +39,6 @@ function gui_callback_selectxy(~,~)
         x           = xk;
         x(x_idx)    = opti_path(it, x_idx);
         x(y_idx)    = opti_path(it, y_idx);
-        plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), '*')
+        plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), 'r*')
     end
 end

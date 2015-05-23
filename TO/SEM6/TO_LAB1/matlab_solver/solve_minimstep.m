@@ -1,4 +1,4 @@
-function [ xk1 ] = solve_minimstep( xk, fun, fungrad, maxstep )
+function [ xk1 ] = solve_minimstep( xk, fun, fungrad )
 %MINIMSTEP  This function evaluates one step of steepest descent
 %           optimization method.
 %
@@ -6,6 +6,8 @@ function [ xk1 ] = solve_minimstep( xk, fun, fungrad, maxstep )
 %           fun     - function to be minimised
 %                       (should take one vector argument)
 %           fungrad - function that returns gradient vector of fun
+    % Parameters:
+    maxstep = 0.1;
 
     dir = fungrad(xk);
     dir = dir/norm(dir);

@@ -1,6 +1,5 @@
 function [ out ] = rbkgrad_num( x )
-%RBKGRAD_NUM Summary of this function goes here
-%   Detailed explanation goes here
+%RBKGRAD_NUM Gradient of rbk function(computed numerically)
     gradstep = 0.00001;
     out = zeros(size(x));
     for it=1:length(x)

@@ -8,6 +8,7 @@ function gui_callback_selectmi(~,~)
         ms = floor(str2num(ms{1}));
         switch(length(ms))
             case 0
+                errordlg('Invalid value');
             case 1
                 max_iters = ms;
             otherwise

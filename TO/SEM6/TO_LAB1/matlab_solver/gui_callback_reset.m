@@ -15,11 +15,11 @@ function gui_callback_reset(~,~)
     xk          = opti_path(1,:);
     
     % Plot section of opti_fun
-    gui_replot_fun(xk);
+    gui_fun_replot(xk);
     
     % Plot starting point
     x           = xk;
     x(x_idx)    = opti_path(1, x_idx);
     x(y_idx)    = opti_path(1, y_idx);
-    plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), '*')
+    plot3(canvas, x(1, x_idx), x(1, y_idx), opti_fun(x), 'r*')
 end

@@ -100,16 +100,20 @@
  
 \input{spr_titlepage.tex}
 
-\section*{Abstrakt}
+\section*{Wstęp}
 
 Przed autorem został postawiony problem stworzenia aplikacji w pakiecie
 \textsc{Matlab}, implementaującej algorytm największego spadku
 do poszukiwania minimum funkcjonału, na przykładzie funkcji benchmarkowej
 Rosenbrocka w wersji dziesięcowymiarowej.
 Dodatkowym założeniem dla projektowanej aplikacji była maksymalna elastyczność w
-postaci prostej podmiany minimalizowanej funkcji czy wyboru liczby wymiarów.
+postaci prostej podmiany minimalizowanej funkcji czy wyboru liczby wymiarów,
+oraz implementacja graficznego interfejsu użytkownika, pozwalającego na proste
+korzystanie z przedstawionego narzędzia.
 
-\section*{Wstęp}
+\newpage
+
+\section*{Algorytm metody największego spadku}
 
 Metoda największego spadku jest prostą iteracyjną metodą gradientową
 poszukiwania minimów funkcjonałów określonych nad ciałem liczb rzeczywistych:
@@ -125,13 +129,6 @@ zbieżności do minimum globalnego) są:
   \item $f \in \mathcal{C}^{1}$ (funkcja ciągła i różniczkowalna)
   \item $f$ jest ściśle wypukła w badanym otoczeniu minimum globalnego
 \end{itemize}
-
-Jako że funkcja Rosenbrocka nie jest funkcją wypukłą na całej przestrzeni
-$\mathbb{R}^{n}$ metoda nie gwarantuje zbieżności do minimum globalnego (dla
-pewnych punktów startowych algorytm może zbiegać do minimum lokalnego, lub
-punktu przegięcia funkcjonału).
-
-\section*{Algorytm metody największego spadku}
 
 Badana metoda jest metodą gradientową, iteracyjną, co oznacza że kolejne
 przybliżenie minimum funkcji jest wyznaczane krokowo na podstawie wartości
@@ -168,8 +165,6 @@ zakładamy, iż spowodowane jest to bliskością minimum:
     \varepsilon > \textrm{abs} (f(x_{k+1}) - f(x_{k})) \rightarrow \textrm{STOP}
 \end{equation}
 
-\newpage
-
 Drugi warunek stopu to ograniczenie na liczbę iteracji algorytmu gwarantujące
 jego zakończenie w przypadku niezadziałania kryterium pierwszego.
 
@@ -177,7 +172,7 @@ jego zakończenie w przypadku niezadziałania kryterium pierwszego.
     i > i_{m} \rightarrow \textrm{STOP}
 \end{equation}
 
-\subsection*{Implementacja w języku Matlab}
+\subsection*{Implementacja solvera w języku Matlab}
 
 Cały solver został zaimplementowany w postaci dwóch funkcji \textsc{Matlab}:
 
@@ -196,6 +191,8 @@ złotego podziału. Przyjmuje jako argumenty:
   \item x0 - początkowy punkt przedziału wyszukiwania
   \item x1 - końcowy punkt przedziału wyszukiwania
 \end{itemize}
+
+Funkcja zwraca obliczone minimum funkcji fun w zadanym przedziale.
 
 \begin{lstlisting}[language=MATLAB, style=mystyle]
     function [ x ] = solve_fmin( fun, x0, x1 )
@@ -236,6 +233,8 @@ do błądzenia. Funkcja przyjmuje jako argumenty:
   \item maxstep - ograniczenie na długość kroku ($\alpha_{m}$)
 \end{itemize}
 
+Funkcja zwraca kolejne przybliżenie minimum funkcji fun.
+
 \begin{lstlisting}[language=MATLAB, style=mystyle]
     function [ xk1 ] = solve_minimstep( xk, fun, fungrad, maxstep )
     %MINIMSTEP  This function evaluates one step of steepest descent
@@ -253,5 +252,117 @@ do błądzenia. Funkcja przyjmuje jako argumenty:
         xk1 = xk - alpha*dir;
     end
 \end{lstlisting}
+
+\newpage
+
+\section*{Funkcja Rosenbrocka}
+
+Jako że funkcja Rosenbrocka nie jest funkcją wypukłą na całej przestrzeni
+$\mathbb{R}^{n}$ metoda nie gwarantuje zbieżności do minimum globalnego (dla
+pewnych punktów startowych algorytm może zbiegać do minimum lokalnego, lub
+punktu przegięcia funkcjonału).
+
+Implementacja algorytmu została przetestowana w oparciu o minimalizację funkcji
+benchmarkowej Rosenbrocka. Funkcja dla $n$ wymiarowej przestrzeni dana jest
+wzorem:
+
+\begin{equation}
+    f(\mathrm{x}) = \sum^{n-1}_{i=1} \left[(1-x_i)^2 + 100(x_{i+1} -
+    x_i^2)^2\right] \hspace{1cm} x \in \mathbb{R}^n
+\end{equation}
+
+Funkcja Rosenbrocka posiada jedno minimum globalne w punkcie
+$\mathrm{x}_0 = \textrm{1}$, gdzie $1$ oznacza wektor $n$ jedynek. Jest to
+łatwe do wykazania.
+
+\subsection*{Dowód nie wprost istnienia i jednoznaczności minimum funkcji
+Rosenbrocka}
+
+Połóżmy, $\mathrm{x}_m = (x_1, x_2, \ldots, x_n)$, takie że istnieje $i \in
+\{1,2,\ldots n\}$ dla którego zachodzi $x_i \neq 1$. Załóżmy, że $\mathrm{x}_m$
+jest minimum funkcji Rosenbrocka. Ale wtedy $(1-x_i)^2 > 0$, a skoro wszystkie
+składniki funkcji Rosenbrocka są nieujemne, zachodzi również $f(\mathrm{x}_m) >
+0$, zatem $\mathrm{x}_m$ nie jest minimum globalnym, ponieważ $f(\mathrm{x}_0)
+= 0 < f(\mathrm{x}_m)$.\\ \rule{1ex}{1ex}
+
+\newpage
+
+\subsection*{Implementacja funkcji Rosenbrocka i jej gradientu w języku Matlab}
+
+Funkcja rbk przyjmuje jako argument wektor dowolnej długości, i zwraca wartość
+funkcji Rosenbrocka w tym punkcie.
+
+\begin{lstlisting}[language=MATLAB, style=mystyle]
+    function [ out ] = rbk( x )
+    %RBK    Rosenbrock function
+        out = 0;
+        for it=1:(length(x) - 1)
+            out = out + (1 - x(it))^2 + 100*(x(it + 1) - x(it)^2)^2;
+        end
+    end
+\end{lstlisting}
+\vspace{1cm}
+
+Funkcja rbkgrad przyjmuje jako argument wektor dowolnej długości, i zwraca
+wektor gradientu funkcji Rosenbrocka w tym punkcie(obliczony analitycznie).
+
+\begin{lstlisting}[language=MATLAB, style=mystyle]
+    function [ out ] = rbkgrad( x )
+    %RBKGRAD Gradient of rbk function(computed analytically)
+        out = zeros(size(x));
+        out(1) = -2*(1 - x(1)) - 400*x(1)*(x(2) - x(1)^2);
+        out(length(x)) = 200*(x(length(x)) - x(length(x) - 1)^2);
+        if(length(x) > 2)
+            for i=2:(length(x) - 1)
+                out(i) = 200*(x(i) - x(i - 1)^2)    -  ...
+                         2*(1 - x(i))               -  ...
+                         400*x(i)*(x(i + 1) - x(i)^2);
+            end
+        end
+    end
+\end{lstlisting}
+\vspace{1cm}
+
+Funkcja rbkgrad\_num działa analogicznie jak rbkgrad, jednak gradient zostaje
+obliczony jako wektor ilorazów różnicowych.
+
+\begin{lstlisting}[language=MATLAB, style=mystyle]
+    function [ out ] = rbkgrad_num( x )
+    %RBKGRAD_NUM Gradient of rbk function(computed numerically)
+        gradstep = 0.00001;
+        out = zeros(size(x));
+        for it=1:length(x)
+            dirstep = zeros(size(x));
+            dirstep(it) = gradstep;
+            out(it) = (rbk(x + dirstep) - rbk(x))/gradstep;
+        end
+    end
+\end{lstlisting}
+
+\newpage
+
+\section*{Interfejs użytkownika}
+
+Jednym z dodatkowych założeń projektu było stworzenie graficznego interfejsu
+użytkownika, który umożliwi wizualizację przebiegu algorytmu, oraz uprości jego
+kontrolę. Podstawowymi założeniami przy projektowaniu interfejsu użytkownika
+była przejrzystość oraz prostota obsługi. Dodatkowo implementacja solvera
+została całkowicie odseparowana od interfejsu użytkownika, przez co istnieje
+możliwość prostej podmiany zarówno algorytmu wyznaczającego minimum, jak
+i optymalizowanej funkcji. Aby to uczynić należy jedynie podmienić odpowiednie
+uchwyty na funkcje w pliku rungui.m. Okno interfejsu zostało przedstawione
+na rysunku \ref{img:gui1}.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[height=13cm]{../res/img/gui_snap_solve.png}
+    \end{center}
+    \caption{GUI aplikacji}\label{img:gui1}
+\end{figure}
+
+\newpage
+
+\subsection{Opis funkcjonalności interfejsu użytkownika}
+
 
 \end{document}
