@@ -264,16 +264,14 @@ $\mathbb{R}^{n}$ metoda nie gwarantuje zbieżności do minimum globalnego (dla
 pewnych punktów startowych algorytm może zbiegać do minimum lokalnego, lub
 punktu przegięcia funkcjonału).
 
-Implementacja algorytmu została przetestowana w oparciu o minimalizację funkcji
-benchmarkowej Rosenbrocka. Funkcja dla $n$ wymiarowej przestrzeni dana jest
-wzorem:
+Funkcja dla $n$ wymiarowej przestrzeni dana jest wzorem:
 
 \begin{equation}
     f(\mathrm{x}) = \sum^{n-1}_{i=1} \left[(1-x_i)^2 + 100(x_{i+1} -
     x_i^2)^2\right] \hspace{1cm} x \in \mathbb{R}^n
 \end{equation}
 
-Funkcja Rosenbrocka posiada jedno minimum globalne w punkcie
+Posiada ona jedno minimum globalne w punkcie
 $\mathrm{x}_0 = \textrm{1}$, gdzie $1$ oznacza wektor $n$ jedynek. Jest to
 łatwe do wykazania.
 
@@ -387,6 +385,75 @@ Do kontroli przebiegu algorytmu użyte są następujące przyciski:
   funkcji który nie spowoduje zatrzymania algorytmu w przypadku użycia opcji
   ,,Solve''(drugie kryterium stopu)
 \end{itemize}
+
+\newpage
+
+\section{Wnioski}
+
+Metoda daje poprawne wyniki, jednak w pobliżu minimum szybkość jej zbieżności
+gwałtownie spada. Poprawność metody została zweryfikowana w oparciu o przebiegi
+algorytmu na losowych wektorach testowych. Każdy wektor został poddany
+przebiegowi algorytmu dla następujących parametrów kryterium stopu:
+
+\begin{itemize}
+  \item Maksymalna liczba iteracji: $5000$
+  \item Minimalny spadek wartości funkcjonału: $10^{-6}$
+\end{itemize}
+
+\subsection{Wyniki testów}
+
+Wyniki są podane w formacie:\\
+
+[Punkt startowy]
+
+[Punkt końcowy]\\
+
+V1:\\
+
+\begin{tabular}{lrrrrrrrrr}
+     [-0.1655 &  -0.9007  &  0.8054 &   0.8896 &  -0.0183  & -0.0215  & -0.3246  
+     & 0.8001 &  -0.2615 &  -0.7776]\\
+    
+     [0.9999  &  0.9998  &  0.9996   & 0.9992   & 0.9984  &  0.9968  &  0.9936 
+     & 0.9873  &  0.9747   & 0.9499]\\
+\end{tabular}\\
+
+V2:\\
+
+\begin{tabular}{lrrrrrrrrr}
+     [0.5605 &  -0.2205 &  -0.5166 &  -0.1922 &  -0.8071  & -0.7361  &  0.8841  
+     & 0.9123  &  0.1504  & -0.8804]\\
+    
+     [0.9999  &  0.9998 &  0.9996  &  0.9992  &  0.9985  &  0.9970  &  0.9941  
+     & 0.9882   & 0.9764  &  0.9533]\\
+\end{tabular}\\
+
+V3:\\
+
+\begin{tabular}{lrrrrrrrrr}
+     [-0.5304  & -0.2937  &  0.6424  & -0.9692  & -0.9140  &-0.6620 &   0.2982  
+     & 0.4634  &  0.2955 &  -0.0982]\\
+    
+     [ 0.9999  &  0.9999   & 0.9997   & 0.9995 &   0.9990  &  0.9981  &  0.9962 
+     & 0.9924  &  0.9848   & 0.9698]\\
+\end{tabular}\\
+
+Dodatkowo w trakcie testów zdarzyły się sytuacje w których algorytm nie zbiegał
+do minimum globalnego. w celu odtworzenia tego przebiegu algorytm zostanie
+uruchomiony dla wektora testowego:\\
+
+V4:\\
+
+\begin{tabular}{lrrrrrrrrr}
+     [-1  & 1  &  1  & 1  & 1  & 1 &   1  
+     & 1  &  1 &  1]\\
+     
+     [-0.9933   & 0.9967  &  0.9983  &  0.9992  &  0.9996  &  0.9998   & 0.9999 
+     & 0.9999  &  0.9999  &  0.9999]\\
+ \end{tabular}\\
+
+Zatem w pobliżu punktu startowego V4 znajduje się minimum lokalne lub punkt
+przegięcia funkcji Rosenbrocka.
 
 
 \end{document}
