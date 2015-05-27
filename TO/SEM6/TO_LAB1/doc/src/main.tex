@@ -236,7 +236,7 @@ do błądzenia. Funkcja przyjmuje jako argumenty:
 Funkcja zwraca kolejne przybliżenie minimum funkcji fun.
 
 \begin{lstlisting}[language=MATLAB, style=mystyle]
-    function [ xk1 ] = solve_minimstep( xk, fun, fungrad, maxstep )
+    function [ xk1 ] = solve_minimstep( xk, fun, fungrad )
     %MINIMSTEP  This function evaluates one step of steepest descent
     %           optimization method.
     %
@@ -244,6 +244,8 @@ Funkcja zwraca kolejne przybliżenie minimum funkcji fun.
     %           fun     - function to be minimised
     %                       (should take one vector argument)
     %           fungrad - function that returns gradient vector of fun
+        % Parameters:
+        maxstep = 0.1;
     
         dir = fungrad(xk);
         dir = dir/norm(dir);
@@ -346,12 +348,14 @@ obliczony jako wektor ilorazów różnicowych.
 Jednym z dodatkowych założeń projektu było stworzenie graficznego interfejsu
 użytkownika, który umożliwi wizualizację przebiegu algorytmu, oraz uprości jego
 kontrolę. Podstawowymi założeniami przy projektowaniu interfejsu użytkownika
-była przejrzystość oraz prostota obsługi. Dodatkowo implementacja solvera
-została całkowicie odseparowana od interfejsu użytkownika, przez co istnieje
-możliwość prostej podmiany zarówno algorytmu wyznaczającego minimum, jak
-i optymalizowanej funkcji. Aby to uczynić należy jedynie podmienić odpowiednie
-uchwyty na funkcje w pliku rungui.m. Okno interfejsu zostało przedstawione
-na rysunku \ref{img:gui1}.
+była przejrzystość oraz prostota obsługi.
+
+Dodatkowo implementacja solvera została całkowicie odseparowana od interfejsu
+użytkownika, przez co istnieje możliwość prostej podmiany zarówno algorytmu
+wyznaczającego minimum, jak i optymalizowanej funkcji. Aby to uczynić należy
+jedynie podmienić odpowiednie uchwyty na funkcje w pliku rungui.m.
+
+Okno interfejsu zostało przedstawione na rysunku \ref{img:gui1}.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -362,7 +366,27 @@ na rysunku \ref{img:gui1}.
 
 \newpage
 
-\subsection{Opis funkcjonalności interfejsu użytkownika}
+Do kontroli przebiegu algorytmu użyte są następujące przyciski:
+
+\begin{itemize}
+  \item ,,Step'' - wylicza jeden kolejny punkt przybliżający minimum i wyświetla
+  go na wykresie
+  \item ,,Solve'' - wylicza kolejne przybliżenia minimum, aż do zadziałania
+  jednego z kryteriów stopu
+  \item ,,Reset'' - przywraca stan algorytmu do punktu początkowego
+  \item ,,Rand x'' - losuje punkt początkowy i przywraca stan algorytmu do
+  punktu początkowego
+  \item ,,Start x'' - wyświetla okienko pozwalające podać punkt początkowy i
+  przywraca stan algorytmu do punktu początkowego
+  \item ,,Select spaces count'' - wyświetla okienko pozwalające podać liczbę
+  wymiarów do analizy
+  \item ,,Select max iterations'' - wyświetla okienko pozwalające ograniczyć
+  maksymalną liczbę iteracji algorytmu w przypadku użycia opcji
+  ,,Solve''(pierwsze kryterium stopu)
+  \item ,,Select stop epsilon'' - pozwala wybrać minimalny spadek wartości
+  funkcji który nie spowoduje zatrzymania algorytmu w przypadku użycia opcji
+  ,,Solve''(drugie kryterium stopu)
+\end{itemize}
 
 
 \end{document}
