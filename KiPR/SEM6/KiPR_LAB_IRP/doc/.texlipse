@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Wed Jun 03 14:11:40 CEST 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=main.tex
+outputFile=KiPR_LAB_IRP.pdf
+langSpell=pl
+markDer=true
+srcDir=src/
