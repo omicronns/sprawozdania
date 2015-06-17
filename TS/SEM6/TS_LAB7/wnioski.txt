@@ -1,0 +1,9 @@
+Charakterystyka systemów dyskretnych nierozłącznie niesie za sobą analizę dodatkowego
+parametru, jakim jest okres próbkowania sygnału, który nie występuje w systemach z czasem
+ciągłym. Dobór okresu próbkowania wiąże się z silnym jego oddziaływaniem na wierność
+odwzorowania zachowania się rzeczywistego systemu w szczególności stanowi o jego stabilności.
+Jakość modelu znacząco maleje wraz ze wzrostem okresu próbkowania.
+
+Ciekawą cechą systemów dyskretnych jest możliwość przedstawienia interesujących struktur fraktalnych
+przy pomocy opisu równaniem stanu. Dla potrzeb sprawozdania został zaimplementowany generator trójkąta
+Sierpińskiego.

@@ -4,6 +4,7 @@ function [ x ] = solve_fmin( fun, x0, x1 )
     % Parameters:
     eps = 0.0001;
     
+    % Body:
     gd = (sqrt(5) - 1)/2;
     while(abs(x0 - x1) > eps)
         xa = x1 - gd*(x1 - x0);

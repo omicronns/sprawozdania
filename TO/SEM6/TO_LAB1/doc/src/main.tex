@@ -162,7 +162,7 @@ pomiędzy kolejnymi iteracjami algorytmu, tj. jeśli spadek jest niewielki
 zakładamy, iż spowodowane jest to bliskością minimum:
 
 \begin{equation}
-    \varepsilon > \textrm{abs} (f(x_{k+1}) - f(x_{k})) \rightarrow \textrm{STOP}
+    \varepsilon_m > |f(x_{k+1}) - f(x_{k})| \rightarrow \textrm{STOP}
 \end{equation}
 
 Drugi warunek stopu to ograniczenie na liczbę iteracji algorytmu gwarantujące
@@ -247,6 +247,7 @@ Funkcja zwraca kolejne przybliżenie minimum funkcji fun.
         % Parameters:
         maxstep = 0.1;
     
+        % Body:
         dir = fungrad(xk);
         dir = dir/norm(dir);
         funmin = @(alpha) fun(xk - alpha*dir);
@@ -352,7 +353,12 @@ Dodatkowo implementacja solvera została całkowicie odseparowana od interfejsu
 użytkownika, przez co istnieje możliwość prostej podmiany zarówno algorytmu
 wyznaczającego minimum, jak i optymalizowanej funkcji. Aby to uczynić należy
 jedynie podmienić odpowiednie uchwyty na funkcje w pliku rungui.m.
+\\
 
+\noindent
+Interfejs uruchamiany jest skryptem rungui.\\
+
+\noindent
 Okno interfejsu zostało przedstawione na rysunku \ref{img:gui1}.
 
 \begin{figure}[!htb]
