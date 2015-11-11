@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Wed Nov 11 22:48:13 CET 2015
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=main.tex
+outputFile=IPT_LAB4.pdf
+langSpell=pl
+markDer=true
+srcDir=src/
