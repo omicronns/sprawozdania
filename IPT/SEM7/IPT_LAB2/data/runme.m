@@ -1,22 +1,59 @@
+%% Zad1
+
 clear all
+close all
 load('data_01.mat')
 
-usrtf = @(s, k, T) ((k)./(T * s + 1));
-pwrs = @(w, k, T) (abs(usrtf(w * 1i, k, T)) .^ 2);
+fs=1000;
 
-h = spectrum.yulear;
-Hpsd = psd(h, x, 'Fs', 1000);
-H = Hpsd.Data;
-H = 10 * log10(H);
+figure
+plot(linspace(0,length(x)/fs,length(x)),x)
+xlabel('Time [s]')
+ylabel('Output [-]')
 
-Ht = @(k, T) (10 * log10(pwrs(Hpsd.Frequencies, k, T)));
+ftspec = @(w, k, T) ((k^2)./(1+(T^2)*(w.^2)));
 
-k = 10 ^ (H(1) / 20);
-T = fminsearch(@(T0) (sum(abs(H - Ht(k, T0)))), 1);
+Hpsd = psd(spectrum.yulear, x, 'Fs', 1000);
+freq = Hpsd.Frequencies;
+cspec = Hpsd.Data;
 
-plot(Hpsd.Frequencies, H)
-grid on
-xlabel('Freq [Hz]')
-ylabel('Power [dB]')
-hold on
-plot(Hpsd.Frequencies, Ht(k, T), 'r')
+k = sqrt(cspec(1));
+T = fminsearch(@(T) (sum(abs(ftspec(freq*2*pi, k, T) - cspec))), 0);
+
+figure
+plot(freq,10*log10(ftspec(freq*2*pi,k,T)), ...
+     freq,10*log10(cspec))
+ 
+xlabel('Frequency [Hz]')
+ylabel('Power ratio [dB]')
+legend('Approximate [yulear]','Estimate [yulear]')
+
+%% Zad2
+
+clear all
+close all
+load('data_02.mat')
+
+fs = 1000;
+
+figure
+plot(linspace(0,length(x)/fs,length(x)),x)
+xlabel('Time [s]')
+ylabel('Output [-]')
+
+ftspec = @(w, k, xi, w0) ((k^2)./((w.^2-w0^2).^2+4*(xi^2)*(w0^2).*(w.^2)));
+
+Hpsd = psd(spectrum.yulear, x, 'Fs', 1000);
+freq = Hpsd.Frequencies;
+cspec = Hpsd.Data;
+
+C = fminsearch(@(C) (sum(abs(ftspec(freq*2*pi, C(1), C(2), C(3)) - cspec))), ...
+    [1.4, 0.0484, 246*2*pi]);
+
+figure
+plot(freq,10*log10(ftspec(freq*2*pi, C(1), C(2), C(3))), ...
+     freq,10*log10(cspec))
+
+xlabel('Frequency [Hz]')
+ylabel('Power ratio [dB]')
+legend('Approximate [yulear]','Estimate [yulear]')

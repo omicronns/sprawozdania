@@ -7,6 +7,7 @@
 \usepackage{polski}
 \usepackage[polish]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
 \usepackage{datetime}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -45,6 +46,148 @@
  
 \input{spr_titlepage.tex} 
 
-% Body
+  \begin{section}{Zadanie 1}
+    Dany jest układ o transmitancji:
+    
+    \begin{equation}
+      G_1(s)=\dfrac{k_1}{Ts+1}
+      \label{equ:g1}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Jest on pobudzany szumem białym Gaussa o wariancji $\sigma^{2} = 1$. Na
+    rysunku \ref{plot:x1} przedstawiona jest odpowiedź układu na takie
+    wymuszenie.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z1_x.pdf}
+      \end{center}
+      \caption{Odpowiedź obiektu na wymuszenie w postaci białego szumu Gaussa}
+      \label{plot:x1}
+    \end{figure}
+    
+    Estymacja parametrów obiektu polega na dopasowaniu krzywej teoretycznego widma
+    mocy sygnału do widma estymowanego na podstawie pomiaru. Teoretyczny
+    przebieg widma mocy tego sygnału dany jest równaniem \ref{equ:ps}:
+    
+    \begin{equation}
+      S(\omega)=|G(j\omega)|^2
+      \label{equ:ps}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Co w przypadku systemu o transmitancji $G_1(s)$ oznacza widmo dane równaniem
+    \ref{equ:ps1}.
+    
+    \begin{equation}
+      S_1(\omega)=\dfrac{k_1^2}{T^2\omega^2+1}
+      \label{equ:ps1}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    \newpage
+    
+    Estymata widma mocy została wyznaczona metodą Yule'a-Walker'a. Przebiegi
+    widma uzyskanego przy pomocy estymatora oraz jego aproksymacji krzywą daną równaniem
+    \ref{equ:ps1} znajdują się na rysunku \ref{plot:approx1}.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z1_approx.pdf}
+      \end{center}
+      \caption{Estymata widma mocy oraz jej aproksymacja}
+      \label{plot:approx1}
+    \end{figure}
+    
+    Parametr $k_1$ obiektu został wyznaczony na podstawie tożsamości
+    \ref{equ:ps1_0}.
+    
+    \begin{equation}
+      S_1(0)=k_1^2
+      \label{equ:ps1_0}
+    \end{equation} 
+    \vspace{0.2cm}
+    
+    Natomiast parametr $T$ został wyznaczony przy użyciu funkcji
+    \textit{fminsearch} pakietu \textrm{MATLAB}
+    
+    Fitowanie krzywej pozwoliło wyznaczyć następujące parametry obiektu:
+    \begin{itemize}
+      \item $k_1 = 0.0917 [-]$
+      \item $T = 1.211 [s]$
+    \end{itemize}
+  \end{section}
+  
+  \newpage
+
+  \begin{section}{Zadanie 2}
+    Dany jest układ o transmitancji:
+    
+    \begin{equation}
+      G_1(s)=\dfrac{k_2}{s^2+2\xi\omega_0s+\omega_0^2}
+      \label{equ:g2}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Jest on pobudzany szumem białym Gaussa o wariancji $\sigma^{2} = 1$. Na
+    rysunku \ref{plot:x2} dana jest odpowiedź układu na takie wymuszenie.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z2_x.pdf}
+      \end{center}
+      \caption{Odpowiedź obiektu na wymuszenie w postaci białego szumu Gaussa}
+      \label{plot:x2}
+    \end{figure}
+    
+    Podobnie jak w poprzednim zadaniu należy dopasować krzywą estymowanego widma
+    sygnału do jego teoretycznego odpowiednika danego równaniem \ref{equ:ps2}.
+    
+    \begin{equation}
+      S_2(\omega)=\dfrac{k_2^2}{4\xi^2\omega_0^2\omega^2+(\omega_0^2-\omega^2)^2}
+      \label{equ:ps2}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    \newpage
+    
+    Estymata widma mocy została wyznaczona podobnie jak w zadaniu 1 metodą
+    Yule'a-Walker'a. Przebiegi widma uzyskanego przy pomocy estymatora oraz
+    jego aproksymacji krzywą daną równaniem \ref{equ:ps2} znajdują się na
+    rysunku \ref{plot:approx2}.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z2_approx.pdf}
+      \end{center}
+      \caption{Estymata widma mocy oraz jej aproksymacja}
+      \label{plot:approx2}
+    \end{figure}
+    
+    Parametry krzywej aproksymacji widma zostały wyznaczone przy użyciu funkcji
+    \textit{fminsearch} pakietu \textrm{MATLAB}.
+    
+    Fitowanie krzywej pozwoliło wyznaczyć następujące parametry obiektu:
+    \begin{itemize}
+      \item $k_2 = 1.084 [-]$
+      \item $\xi = 0.0353 [-]$
+      \item $\omega_0 = 1549.3 \left[\frac{1}{s}\right]$ ($246.5 [Hz]$)
+    \end{itemize}
+
+  \end{section}
+
+  \begin{section}{Wnioski}
+  
+    Transmitancja operatorowa, a właściwie związana z nią transmitancja widmowa,
+    opisuje dynamiczne właściwości obiektów w dziedzinie częstotliwości.
+    Analizując zmianę widma na wyjściu badanego obiektu jesteśmy w stanie,
+    znając charakter obiektu wyznaczyć jego parametry.
+    
+  \end{section}
 
 \end{document}
