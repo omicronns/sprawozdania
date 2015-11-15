@@ -45,6 +45,200 @@
  
 \input{spr_titlepage.tex} 
 
-% Body
+  \begin{section}{Zadanie 1}
+    Dany jest układ \textrm{ARMAX} o strukturze z równania \ref{equ:armax1}.
+    
+    \begin{equation}
+      y_n=-a_1y_{n-1}+b_1u_{n-1}+v_i 
+      \label{equ:armax1}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Jest on pobudzany sygnałem prostokątnym o amplitudzie $4$, natomiast sygnał
+    $v$ jest szumem zakłóceń. Na rysunku \ref{plot:approx1} znajduje się
+    odpowiedź wyznaczonego modelu oraz w tle przebieg odpowiedzi zmierzonej, na
+    podstawie której wyznaczono parametry modelu.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z1_approx.pdf}
+      \end{center}
+      \caption{Odpowiedź wyznaczonego modelu \ref{equ:armax1} na tle dokonanych pomiarów}
+      \label{plot:approx1}
+    \end{figure}
+    
+    Parametry modelu zostały znalezione metodą najmniejszych kwadratów.
+    Wyznaczenie parametrów polega na zauważeniu tożsamości podanej w równaniu
+    \ref{equ:lsq}. Tożsamość ta wywodzi się z zapisania uogólnionej wersji
+    równania \ref{equ:armax1} dla wszystkich $N$ posiadanych próbek
+    pomiarowych, z pominięciem szumu $v$. $k$ oznacza rząd modelu.
+    
+    \begin{equation}
+      \begin{bmatrix}
+        y_k \\ y_{k+1} \\ \vdots \\ y_N
+      \end{bmatrix} =
+      \begin{bmatrix}
+        y_{k-1} & y_{k-2} & \hdots & y_{1} & u_{k-1} & u_{k-2} & \hdots & u_1 \\
+        y_{k}   & y_{k-1} & \hdots & y_{2} & u_{k}   & u_{k-1} & \hdots & u_2 \\
+        \vdots  & \vdots  & \vdots & \vdots & \vdots & \vdots  &\vdots  & \vdots \\
+        y_{N-1} & y_{N-2} & \hdots & y_{N-k} & u_{N-1} & u_{N-2} & \hdots &
+        u_{N-k} \\
+      \end{bmatrix}
+      \begin{bmatrix}
+        a_1 \\ a_2 \\ \vdots \\ a_k \\ b_1 \\ b_2 \\ \vdots \\ b_k 
+      \end{bmatrix}
+      \label{equ:lsq}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    \newpage
+    
+    Równanie \ref{equ:lsq} w wersji skróconej można zapisać w postaci
+    \ref{equ:lsqs}.
+    
+    \begin{equation}
+      Y = \Phi C
+      \label{equ:lsqs} 
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Po prostych przekształceniach dochodzimy do równania \ref{equ:clsqs} pozwalającego
+    wyznaczyć wektor współczynników $C$.
+    
+    \begin{equation}
+      C = (\Phi^T\Phi)^{-1}\Phi^T Y
+      \label{equ:clsqs} 
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Oszacowanie błędu parametrów polega na obliczeniu macierzy kowariancji
+    współczynników, do której wyznaczenia użyto równania \ref{equ:cove}
+    opierającego się o zasadę propagacji błędów statystycznych.
+    $\sigma^2$ jest wariancją różnicy sygnałów wyjściowych zmierzonego oraz z
+    wyznaczonego modelu.
+    
+    \begin{equation}
+      \mathrm{Cov}(C) = \sigma^2(\Phi^T\Phi)^{-1}
+      \label{equ:cove} 
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Wyznaczone parametry to:
+    
+    \begin{itemize}
+      \item $a_1 = -0.9161$, $\sigma_{a_1} = 0.0097$
+      \item $b_1 = 0.0581$, $\sigma_{b_1} = 0.0075$
+    \end{itemize}
+    
+    Drugą częścią zadania było wyznaczenie parametrów metodą predykcji błędów,
+    co sprowadziło zadanie do użycia funkcji \textit{armax} pakietu
+    \textrm{MATLAB}. Funkcja przyjmuje jako argumenty zmierzone sygnały, oraz
+    rzędy wielomianów modelu \textrm{ARMAX}. Wyznaczone przy jej pomocy
+    parametry są identyczne (różnice na poziomie $10^{-14}$) jak te wyznaczone
+    metodą najmniejszych kwadratów, jednak dokładność ich wyznaczenia jest wyższa:
+    
+    \begin{itemize}
+      \item $a_1 = -0.9161$, $\sigma_{a_1} = 0.0036$
+      \item $b_1 = 0.0581$, $\sigma_{b_1} = 0.0028$
+    \end{itemize}
+    
+    \newpage
+    
+    Ostatnim zadaniem było sprawdzenie czy reszty modelu \ref{equ:armax1} są
+    białym szumem. W tym celu wyznaczono transformatę Fouriera reszt, która
+    przedstawiona jest na rysunku \ref{plot:errfft1}.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z1_errfft.pdf}
+      \end{center}
+      \caption{Widmo reszt modelu \ref{equ:armax1}}
+      \label{plot:errfft1}
+    \end{figure}
+    
+    Jak zatem widać otrzymane reszty nie są szumem białym.
+  
+    \newpage
+    
+  \end{section}
+
+  \begin{section}{Zadanie 2}
+    Dany jest układ \textrm{ARMAX} o strukturze z równania \ref{equ:armax2}.
+    
+    \begin{equation}
+      y_n=-a_1y_{n-1}-a_2y_{n-2}+b_1u_{n-1}+b_2u_{n-2}+v_i 
+      \label{equ:armax2}
+    \end{equation}
+    \vspace{0.2cm}
+    
+    Tak jak w zadaniu 1 jest on pobudzany sygnałem prostokątnym o amplitudzie
+    $4$, natomiast sygnał $v$ jest szumem zakłóceń. Na rysunku
+    \ref{plot:approx2} znajduje się odpowiedź wyznaczonego modelu oraz w tle
+    przebieg odpowiedzi zmierzonej, na podstawie której wyznaczono parametry
+    modelu.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z2_approx.pdf}
+      \end{center}
+      \caption{Odpowiedź wyznaczonego modelu \ref{equ:armax2} na tle dokonanych pomiarów}
+      \label{plot:approx2}
+    \end{figure}
+    
+    \newpage
+    
+    Parametry modelu zostały wyznaczone analogicznie jak w zadaniu 1 zatem
+    podane zostaną tylko wyniki.
+    
+    Wyznaczone parametry to:
+    
+    \begin{itemize}
+      \item $a_1 = -1.5523$, $\sigma_{a_1} = 0.0124$
+      \item $a_2 = 0.9037$, $\sigma_{a_2} = 0.0116$
+      \item $b_1 = 0.1823$, $\sigma_{b_1} = 0.0199$
+      \item $b_2 = 0.1694$, $\sigma_{b_2} = 0.0212$
+    \end{itemize}
+    
+    Dla metody predykcji błędu, znów wartości parametrów okazały się być takie
+    same, jednak ta metoda cechuje się ponownie niższym oszacowaniem błędów
+    wyznaczonych współczynników.
+    
+    \begin{itemize}
+      \item $a_1 = -1.5523$, $\sigma_{a_1} = 0.0027$
+      \item $a_2 = 0.9037$, $\sigma_{a_2} = 0.0026$
+      \item $b_1 = 0.1823$, $\sigma_{b_1} = 0.0044$
+      \item $b_2 = 0.1694$, $\sigma_{b_2} = 0.0047$
+    \end{itemize}
+    
+    Widmo reszt modelu pokazane na rysunku \ref{plot:errfft2} wskazuje na to iż
+    ponownie nie są one szumem białym.
+    
+    \begin{figure}[!htb]
+      \begin{center}
+        \includegraphics[width=14cm,trim=3cm 9cm 3cm 9cm,clip]
+        {../res/img/z2_errfft.pdf}
+      \end{center}
+      \caption{Widmo reszt modelu \ref{equ:armax2}}
+      \label{plot:errfft2}
+    \end{figure}
+    
+  \end{section}
+
+  \begin{section}{Wnioski}
+  
+    Identyfikację procesów warto przeprowadzać w oparciu o dwie niezależne
+    metody. Pozwala to uniknąć błędów ludzkich, ponieważ znaczna rozbieżność
+    wartości parametrów wyznaczonych różnymi metodami będzie wskazywać na
+    popełnienie błędu w procesie identyfikacji w jednej, kilku, lub wszystkich
+    użytych metodach.
+    
+    Metoda najmniejszych kwadratów pomimo upływu czasu dalej jest dobrym
+    estymatorem parametrów. Widać to na przykładzie wyznaczonych współczynników
+    badanych modeli.
+    
+  \end{section}
 
 \end{document}
