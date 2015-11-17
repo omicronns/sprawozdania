@@ -69,18 +69,18 @@
     \end{figure}
     
     Parametry modelu zostały znalezione metodą najmniejszych kwadratów.
-    Wyznaczenie parametrów polega na zauważeniu tożsamości podanej w równaniu
+    Wyznaczenie parametrów polega na wykorzystaniu tożsamości podanej w równaniu
     \ref{equ:lsq}. Tożsamość ta wywodzi się z zapisania uogólnionej wersji
     równania \ref{equ:armax1} dla wszystkich $N$ posiadanych próbek
     pomiarowych, z pominięciem szumu $v$. $k$ oznacza rząd modelu.
     
     \begin{equation}
       \begin{bmatrix}
-        y_k \\ y_{k+1} \\ \vdots \\ y_N
+        y_{k+1} \\ y_{k+2} \\ \vdots \\ y_N
       \end{bmatrix} =
       \begin{bmatrix}
-        y_{k-1} & y_{k-2} & \hdots & y_{1} & u_{k-1} & u_{k-2} & \hdots & u_1 \\
-        y_{k}   & y_{k-1} & \hdots & y_{2} & u_{k}   & u_{k-1} & \hdots & u_2 \\
+        y_{k} & y_{k-1} & \hdots & y_{1} & u_{k} & u_{k-1} & \hdots & u_1 \\
+        y_{k+1} & y_{k} & \hdots & y_{2} & u_{k+1} & u_{k} & \hdots & u_2 \\
         \vdots  & \vdots  & \vdots & \vdots & \vdots & \vdots  &\vdots  & \vdots \\
         y_{N-1} & y_{N-2} & \hdots & y_{N-k} & u_{N-1} & u_{N-2} & \hdots &
         u_{N-k} \\
